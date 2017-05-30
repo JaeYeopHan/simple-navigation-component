@@ -26,6 +26,9 @@ TodoView.prototype.render = function () {
         }, {
             id: 2,
             todo: 'test2'
+        }, {
+            id: 3,
+            todo: 'test3'
         }]
     }));
 };
