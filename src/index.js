@@ -1,4 +1,4 @@
-var TodoController = require('./container/todo.controller');
+var TodoController = require('./components/todo.controller.js');
 
 (function() {
     new TodoController('#list', '#nav');

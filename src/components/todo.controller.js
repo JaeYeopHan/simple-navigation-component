@@ -1,4 +1,4 @@
-var TodoView = require('../components/todo.view')
+var TodoView = require('./todo.view.js')
 
 function TodoController(listRoot, navRoot) {
     this._todoView = new TodoView(listRoot, navRoot);
