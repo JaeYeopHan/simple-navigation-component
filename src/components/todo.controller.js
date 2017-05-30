@@ -1,4 +1,4 @@
-var TodoView = require('./todo.view.js')
+var TodoView = require('./todo.view.js');
 
 function TodoController(listRoot, navRoot) {
     this._todoView = new TodoView(listRoot, navRoot);
@@ -9,5 +9,8 @@ TodoController.prototype.initView = function() {
     this._todoView.render();
 };
 
+TodoController.prototype.updateView = function() {
+    this._todoView.render();
+};
 
 module.exports = TodoController;
