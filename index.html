@@ -2,54 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <title>Component Tutorial</title>
   <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
 </head>
 <body>
   <div class="container">
-    <h3>Navigation Component</h3>
+    <h3>Building Component Tutorial</h3>
     <section id="root">
-      <section id="list">
-        <!-- list component -->
-        <div class="list-group">
-          <a href="#" class="list-group-item disabled">
-            Cras justo odio
-          </a>
-          <!-- to do component -->
-          <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-          <a href="#" class="list-group-item">Morbi leo risus</a>
-          <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-          <!-- to do component end -->
-        </div>
-        <!-- list component end -->
-      </section>
-      <section class="nav">
-        <!-- nav component -->
-        <nav aria-label="Page navigation">
-          <ul class="pagination">
-            <li>
-              <a href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li>
-              <a href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-        <!-- nav component end -->
-      </section>
+      <section id="list"></section>
+      <section id="nav" style="text-align: center;"></section>
     </section>
   </div>
-  <script src="./node_modules/jquery/dist/jquery.js"></script>
-  <script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
-  <script src="src/component/nav/nav.js"></script>
+  <script src="dist/bundle.js"></script>
 </body>
 </html>
