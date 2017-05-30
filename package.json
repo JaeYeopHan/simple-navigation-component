@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/JaeYeopHan/component_development_practice#readme",
   "devDependencies": {
+    "bootstrap": "^3.3.7",
     "handlebars": "^4.0.10",
     "jquery": "^3.2.1"
   }
