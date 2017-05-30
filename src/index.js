@@ -1,5 +1,7 @@
 var TodoController = require('./components/todo.controller.js');
+var EventEmitter = require('event-emitter');
 
 (function() {
-    new TodoController('#list', '#nav');
+    var eventEmitter = new EventEmitter();
+    new TodoController(eventEmitter, '#list', '#nav');
 }());
