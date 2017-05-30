@@ -1,17 +1,15 @@
-$.get('http://128.199.76.9:8002/jbee/todo/count')
-    .then(function(data) {
-        console.log(data);
-    }).fail(function(err) {
-    console.error(err);
-});
+var $ = require('jquery');
 
-//start 시작하는 number
-//limit 개수
+function TodoService() {
+    this._api = 'http://128.199.76.9:8002/jbee/todo';
+}
 
-$.get('http://128.199.76.9:8002/jbee/todo/page?start=0&limit=5')
-    .then(function(data) {
-        console.log(data);
-    }).fail(function(err) {
-    console.error(err);
-});
+TodoService.prototype.getTodoCount = function() {
+    return $.get(this._api + '/count');
+};
 
+TodoService.prototype.getTodosOfPage = function(num) {
+    return $.get(this._api + '/page?start=' + num + '&limit=3');
+};
+
+module.exports = TodoService;

@@ -1,11 +1,13 @@
 var TodoView = require('./todo.view.js');
+var TodoService = require('./todo.service');
 
 function TodoController(listRoot, navRoot) {
     this._todoView = new TodoView(listRoot, navRoot);
-    this.initView();
+    this._todoService = new TodoService();
+    this._initView();
 };
 
-TodoController.prototype.initView = function() {
+TodoController.prototype._initView = function() {
     this._todoView.render();
 };
 
