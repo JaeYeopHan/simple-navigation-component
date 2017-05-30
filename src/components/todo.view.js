@@ -7,7 +7,7 @@ function TodoView(eventEmitter, listRoot, navRoot) {
     this.listRoot = listRoot;
     this.navRoot = navRoot;
     this.eventEmitter = eventEmitter;
-    this.init();
+    this._init();
 };
 
 TodoView.prototype.onClickPageNav = function(e) {
@@ -15,40 +15,27 @@ TodoView.prototype.onClickPageNav = function(e) {
     this.eventEmitter.emit('changePage', $(e.target).text());
 };
 
-TodoView.prototype.renderNav = function() {
+TodoView.prototype.renderNav = function(opt) {
+    var opt = opt || {
+            page: [{
+                num: 1
+            }],
+            prevDisable: false,
+            postDisable: false
+    };
     $(this.navRoot).html(navTemplate({
-        page: [{
-            num: 1
-        }, {
-            num: 2
-        }, {
-            num: 3
-        }, {
-            num: 4
-        }, {
-            num: 5
-        }],
-        prevDisable: false,
-        postDisable: false
+        page: opt.page,
+        prevDisable: opt.prevDisable,
+        postDisable: opt.postDisable
     }));
 };
 
-TodoView.prototype.renderList = function () {
-    $(this.listRoot).html(listTemplate({
-        todo: [{
-            id: 1,
-            todo: 'test1'
-        }, {
-            id: 2,
-            todo: 'test2'
-        }, {
-            id: 3,
-            todo: 'test3'
-        }]
-    }));
+TodoView.prototype.renderList = function(todos) {
+    var todos = todos || {id: 1, todo: 'todos가 없습니다.'};
+    $(this.listRoot).html(listTemplate({ todos: todos }));
 };
 
-TodoView.prototype.init = function () {
+TodoView.prototype._init = function () {
     $(this.navRoot).on('click', function(e) {
         var target = e.target;
         if (target.matches('.page-nav')) {

@@ -4,7 +4,7 @@ function TodoService() {
     this._api = 'http://128.199.76.9:8002/jbee/todo';
 }
 
-TodoService.prototype.getTodoCount = function() {
+TodoService.prototype.getCountOfTodos = function() {
     return $.get(this._api + '/count');
 };
 
