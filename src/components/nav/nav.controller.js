@@ -14,38 +14,27 @@ function NavController(api, root, eventEmitter) {
 
 NavController.prototype.buildNav = function() {
     this._navService.getCountOfTodos().then(function(countObj) {
-        var renderOption = this._getRenderOption.call(this, countObj.cnt);
-        this._navView.renderNav({
-            page: renderOption.result,
-            prevDisable: renderOption.prevDisable,
-            postDisable: renderOption.postDisable
-        });
+        var pages = this._getRenderOption.call(this, countObj.cnt);
+        this._navView.renderNav({ page: pages });
     }.bind(this)).catch(function(err) {
         console.error(err);
     });
 };
 
 NavController.prototype._getRenderOption = function(count) {
-    var result = [];
+    var pages = [];
     var pageNum = count / this._ONEPAGE_TODOCOUNT;
-    var prevDisable = false;
-    var postDisable = false;
     if (pageNum > this._MAX_PAGE_NUM) {
         for (var i = 1; i <= this._MAX_PAGE_NUM; i++) {
-            result.push({ num: i });
-            postDisable = true;
+            pages.push({ num: i });
         }
     } else {
         for (var i = 1; i <= pageNum + 1; i++) {
-            result.push({ num: i });
+            pages.push({ num: i });
         }
     }
 
-    return {
-        result: result,
-        prevDisable: prevDisable,
-        postDisable: postDisable
-    };
+    return pages;
 };
 
 NavController.prototype._initView = function() {

@@ -22,8 +22,8 @@ NavView.prototype.renderNav = function(opt) {
         };
     $(this.root).html(navTemplate({
         page: opt.page,
-        prevDisable: opt.prevDisable,
-        postDisable: opt.postDisable
+        prevDisable: opt.prev,
+        postDisable: opt.post
     }));
 };
 
