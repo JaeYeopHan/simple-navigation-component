@@ -16,10 +16,8 @@ Component development practice repository
   - [ ] list component
   
 * Webpack
-  - [ ] js bundle
-  - [ ] js uglify, minify
-  - [ ] html uglify, minify
-  - [ ] css uglify, minify
+  - [x] js bundle
+  - [x] js uglify, minify
   
 * Unit Test
   - [ ] mocha
@@ -37,3 +35,5 @@ Component development practice repository
   * DOM Select => Native
   * Ajax => fetch API or axios
 * Apply Travis CI
+* html file uglify, minify
+* css and bootstrap uglify, minify
