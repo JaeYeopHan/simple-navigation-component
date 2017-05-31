@@ -1,15 +1,23 @@
+const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
-    entry: './src/index.js',
+    entry: ['./src/index.js'],
+
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js'
     },
+
     devtool: 'source-map',
+
     devServer: {
+        hot: true,
+        inline: true,
+        compress: true,
         publicPath: '/dist/'
     },
+
     module: {
         rules: [
             {
@@ -19,5 +27,17 @@ module.exports = {
                 }
             }
         ]
-    }
+    },
+
+    plugins: [
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoEmitOnErrorsPlugin(),
+        new webpack.optimize.OccurrenceOrderPlugin(),
+        new webpack.optimize.UglifyJsPlugin(),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'commons',
+            filename: 'commons.js',
+            minChunks: Infinity
+        })
+    ]
 };
