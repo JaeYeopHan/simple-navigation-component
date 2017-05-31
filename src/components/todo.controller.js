@@ -1,10 +1,11 @@
 var TodoView = require('./todo.view.js');
 var TodoService = require('./todo.service');
+var EventEmitter = require('event-emitter');
 
-function TodoController(eventEmitter, listRoot, navRoot) {
-    this.eventEmitter = eventEmitter;
-    this._todoView = new TodoView(eventEmitter, listRoot, navRoot);
-    this._todoService = new TodoService();
+function TodoController(api, listRoot, navRoot) {
+    this.eventEmitter = new EventEmitter();
+    this._todoView = new TodoView(this.eventEmitter, listRoot, navRoot);
+    this._todoService = new TodoService(api);
 
     this._ONEPAGE_TODOCOUNT = 3;
     this._MAX_PAGE_NUM = 5;

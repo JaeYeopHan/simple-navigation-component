@@ -1,7 +1,7 @@
 var $ = require('jquery');
 
-function TodoService() {
-    this._api = 'http://128.199.76.9:8002/jbee/todo';
+function TodoService(api) {
+    this._api = api;
 }
 
 TodoService.prototype.getCountOfTodos = function() {

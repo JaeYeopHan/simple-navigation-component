@@ -1,7 +1,6 @@
 var TodoController = require('./components/todo.controller.js');
-var EventEmitter = require('event-emitter');
 
 (function() {
-    var eventEmitter = new EventEmitter();
-    new TodoController(eventEmitter, '#list', '#nav');
+    var api = 'http://128.199.76.9:8002/jbee/todo';
+    new TodoController(api, '#list', '#nav');
 }());
