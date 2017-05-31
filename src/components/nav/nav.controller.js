@@ -14,14 +14,14 @@ function NavController(api, root, eventEmitter) {
 
 NavController.prototype.buildNav = function() {
     this._navService.getCountOfTodos().then(function(countObj) {
-        var pages = this._getRenderOption.call(this, countObj.cnt);
-        this._navView.renderNav({ page: pages });
+        var pages = this._getPages.call(this, countObj.cnt);
+        this._navView.renderNav(pages);
     }.bind(this)).catch(function(err) {
         console.error(err);
     });
 };
 
-NavController.prototype._getRenderOption = function(count) {
+NavController.prototype._getPages = function(count) {
     var pages = [];
     var pageNum = count / this._ONEPAGE_TODOCOUNT;
     if (pageNum > this._MAX_PAGE_NUM) {

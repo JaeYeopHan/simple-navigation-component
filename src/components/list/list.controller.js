@@ -6,16 +6,19 @@ function ListController(api, root, eventEmitter) {
     this._listView = new ListView(this.eventEmitter, root);
     this._listService = new ListService(api);
 
-    this._ONEPAGE_TODOCOUNT = 3;
     this._DEFAULT_PAGE_NUM = 1;
 
     this._initView();
     this._attachEvent();
 }
 
-ListController.prototype.updateViewOfPage = function(num) {
-    var startNum = (num - 1) * this._ONEPAGE_TODOCOUNT;
-    this._listService.getTodosOfPage(startNum, this._ONEPAGE_TODOCOUNT)
+ListController.prototype.updateViewOfPage = function(renderOption) {
+    var renderOption = renderOption || {
+            index: this._DEFAULT_PAGE_NUM,
+            max: 3
+    };
+    var startNum = (renderOption.index - 1) * renderOption.max;
+    this._listService.getTodosOfPage(startNum, renderOption.max)
         .then(function(todos) {
             this._listView.renderList(todos);
         }.bind(this)).catch(function(err) {
@@ -24,7 +27,7 @@ ListController.prototype.updateViewOfPage = function(num) {
 };
 
 ListController.prototype._initView = function() {
-    this.updateViewOfPage(this._DEFAULT_PAGE_NUM);
+    this.updateViewOfPage();
 };
 
 ListController.prototype._attachEvent = function() {
