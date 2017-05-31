@@ -12,7 +12,7 @@ function ListController(api, root, eventEmitter) {
     this._attachEvent();
 }
 
-ListController.prototype.updateViewOfPage = function(renderOption) {
+ListController.prototype.changePage = function(renderOption) {
     var renderOption = renderOption || {
             index: this._DEFAULT_PAGE_NUM,
             max: 3
@@ -27,11 +27,11 @@ ListController.prototype.updateViewOfPage = function(renderOption) {
 };
 
 ListController.prototype._initView = function() {
-    this.updateViewOfPage();
+    this.changePage();
 };
 
 ListController.prototype._attachEvent = function() {
-    this.eventEmitter.on('changePage', this.updateViewOfPage.bind(this));
+    this.eventEmitter.on('changePage', this.changePage.bind(this));
 };
 
 module.exports = ListController;
