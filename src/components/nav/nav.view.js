@@ -19,27 +19,34 @@ NavView.prototype.onClickPageNav = function(e) {
     };
     this.eventEmitter.emit('changePage', renderOption);
     this.navSelected();
+    this.prevCheck();
 };
 
 NavView.prototype.onClickPrevBtn = function(e) {
     e.preventDefault();
-    this._currentIndex -= 1;
-    if (this._currentIndex < 0) {
-
+    if ($(e.target).closest('li').hasClass('disabled')) {
+        return;
     }
+    this._currentIndex -= 1;
     var renderOption = {
         index: this._currentIndex,
         max: this._ONEPAGE_TODO_MAX_COUNT
     };
     this.eventEmitter.emit('changePage', renderOption);
     this.navSelected();
+    this.prevCheck();
 };
 
 NavView.prototype.onClickPostBtn = function(e) {
     e.preventDefault();
     this._currentIndex += 1;
     if (this._currentIndex > 5) {
-
+        if ($(e.target).closest('li').hasClass('disabled')) {
+            return;
+        }
+        // TODO
+        // controller에서 새로운 이벤트 등록
+        // renderNav 다시. _currentIndex + 1 부터 되는대로.
     }
     var renderOption = {
         index: this._currentIndex,
@@ -47,6 +54,17 @@ NavView.prototype.onClickPostBtn = function(e) {
     };
     this.eventEmitter.emit('changePage', renderOption);
     this.navSelected();
+    this.prevCheck();
+};
+
+NavView.prototype.renderNav = function(renderOption) {
+    var renderOption = renderOption || [{ num: 1, post: false }];
+    this.post = renderOption.post;
+    $(this.root).html(navTemplate({
+        pages: renderOption.pages
+    }));
+    this.navSelected();
+    this.prevCheck();
 };
 
 NavView.prototype.navSelected = function() {
@@ -59,10 +77,11 @@ NavView.prototype.navSelected = function() {
     }.bind(this));
 };
 
-NavView.prototype.renderNav = function(pages) {
-    var pages = pages || [{ num: 1 }];
-    $(this.root).html(navTemplate({ page: pages }));
-    this.navSelected();
+NavView.prototype.prevCheck = function() {
+    var prev = $('#prevBtn').parent();
+    this._currentIndex == 1
+        ? prev.addClass('disabled')
+        : prev.removeClass('disabled');
 };
 
 NavView.prototype._init = function() {
