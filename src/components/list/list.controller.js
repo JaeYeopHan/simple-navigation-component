@@ -15,11 +15,12 @@ function ListController(api, root, eventEmitter) {
 
 ListController.prototype.updateViewOfPage = function(num) {
     var startNum = (num - 1) * this._ONEPAGE_TODOCOUNT;
-    this._listService.getTodosOfPage(startNum).then(function(todos) {
-        this._listView.renderList(todos);
-    }.bind(this)).catch(function(err) {
-        console.log(err);
-    });
+    this._listService.getTodosOfPage(startNum, this._ONEPAGE_TODOCOUNT)
+        .then(function(todos) {
+            this._listView.renderList(todos);
+        }.bind(this)).catch(function(err) {
+            console.log(err);
+        });
 };
 
 ListController.prototype._initView = function() {
