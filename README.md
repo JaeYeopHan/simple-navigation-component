@@ -12,8 +12,8 @@ Component development practice repository
 
 ### Requirement
 * Component
-  - [ ] nav component
-  - [ ] list component
+  - [x] nav component
+  - [x] list component
   
 * Webpack
   - [x] js bundle
@@ -34,6 +34,8 @@ Component development practice repository
 * Remove jQuery
   * DOM Select => Native
   * Ajax => fetch API or axios
-* Apply Travis CI
 * html file uglify, minify
 * css and bootstrap uglify, minify
+* Apply Travis CI
+* Add karma
+* Add istanbul
