@@ -1,11 +1,11 @@
 var $ = require('jquery');
 var navTemplate = require('./nav.hbs');
 
-function NavView(eventEmitter, root) {
+function NavView(eventEmitter, root, navOption) {
     this.root = root;
     this.eventEmitter = eventEmitter;
     this._currentIndex = 1;
-    this._ONEPAGE_TODO_MAX_COUNT = 3; //TODO 외부에서 주입받기
+    this._MAX_TODO_COUNT_OF_PAGE = navOption.countOfItem;
     this._init();
 }
 
@@ -15,7 +15,7 @@ NavView.prototype.onClickPageNav = function(e) {
     this._currentIndex = parseInt(index);
     var renderOption = {
         index: index,
-        max: this._ONEPAGE_TODO_MAX_COUNT
+        max: this._MAX_TODO_COUNT_OF_PAGE
     };
     this.eventEmitter.emit('changePage', renderOption);
     this.navSelected();
@@ -30,7 +30,7 @@ NavView.prototype.onClickPrevBtn = function(e) {
     this._currentIndex -= 1;
     var renderOption = {
         index: this._currentIndex,
-        max: this._ONEPAGE_TODO_MAX_COUNT
+        max: this._MAX_TODO_COUNT_OF_PAGE
     };
     this.eventEmitter.emit('changePage', renderOption);
     this.navSelected();
@@ -50,7 +50,7 @@ NavView.prototype.onClickPostBtn = function(e) {
     }
     var renderOption = {
         index: this._currentIndex,
-        max: this._ONEPAGE_TODO_MAX_COUNT
+        max: this._MAX_TODO_COUNT_OF_PAGE
     };
     this.eventEmitter.emit('changePage', renderOption);
     this.navSelected();

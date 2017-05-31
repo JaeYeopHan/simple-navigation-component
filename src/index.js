@@ -14,9 +14,18 @@ var EventEmitter = require('event-emitter');
     new ListComponent(api, '#list', eventEmitter);
 
     //
-    // @param api (fetch data url)
-    // @param selector
-    // @param eventEmitter
-    //
+    // @param [required] api (fetch data url)
+    // @param [required] selector
+    // @param [required] eventEmitter
+    // @param navOption
+    //      default set
+    //      MAX_TODO_COUNT_OF_PAGE: 3
+    //      MAX_INDEX_NUM: 5
+    // Example
+    // new NavComponent(api, '#nav', eventEmitter, {
+    //     countOfItem: 5,
+    //     countOfIndex: 3
+    // });
     new NavComponent(api, '#nav', eventEmitter);
+
 }());
