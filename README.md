@@ -25,7 +25,7 @@ Component development practice repository
   - [ ] chai-http
   
 * Code Quality
-  - [ ] ESLint 적용
+  - [x] ESLint 적용
 
 
 ### Futhermore
