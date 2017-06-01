@@ -39,12 +39,9 @@ NavView.prototype.onClickNavBtn = function(e, controlCurrentIndex) {
     this.controlNav();
 };
 
-NavView.prototype.renderNav = function(renderOption) {
-    var renderOption = renderOption || [{ num: 1, overIndex: false }];
-    this.isOverIndex = renderOption.overIndex;
-    $(this.root).html(navTemplate({
-        pages: renderOption.pages
-    }));
+NavView.prototype.renderNav = function(pages) {
+    var pages = pages || [{ num: 1 }];
+    $(this.root).html(navTemplate({ pages: pages }));
     this.controlNav();
 };
 
@@ -68,7 +65,7 @@ NavView.prototype.disabledCheck = function(target, indexNum, isOver) {
 NavView.prototype.controlNav = function() {
     this.navSelected();
     this.disabledCheck('#prevBtn', 1, false);
-    this.disabledCheck('#postBtn', 5, this.isOverIndex);
+    this.disabledCheck('#postBtn', 5, false);
 };
 
 NavView.prototype._init = function() {

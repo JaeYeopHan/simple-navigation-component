@@ -10,12 +10,9 @@ function NavModel (api, navOption) {
     this.postOverIndex;
 }
 
-NavModel.prototype.getRenderOption = function() {
-    return {
-        pages: this.pages,
-        postOverIndex: this.postOverIndex
-    };
-};
+NavModel.prototype.getPages = function() {
+    return this.pages;
+}
 
 NavModel.prototype.setRenderOption = function(renderOption) {
     this.pages = renderOption.pages;
@@ -32,6 +29,7 @@ NavModel.prototype.init = function() {
 };
 
 NavModel.prototype._getPages = function(count) {
+    //logic 수정
     var pages = [];
     var pageNum = count / this._MAX_TODO_COUNT_OF_PAGE;
     var postOverIndex = false;

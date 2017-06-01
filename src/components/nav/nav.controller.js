@@ -17,11 +17,8 @@ function NavController(api, root, eventEmitter, navOption) {
 }
 
 NavController.prototype.buildNav = function() {
-    var renderOption = this._navModel.getRenderOption();
-    this._navView.renderNav({
-        pages: renderOption.pages,
-        overIndex: renderOption.overIndex
-    });
+    var pages = this._navModel.getPages();
+    this._navView.renderNav(pages);
 };
 
 NavController.prototype._init = function() {
