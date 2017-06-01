@@ -6,19 +6,17 @@ function NavController(api, root, eventEmitter, navOption) {
             countOfItem: 3,
             countOfIndex: 5
     };
-    this._MAX_TODO_COUNT_OF_PAGE = this.navOption.countOfItem;
-    this._MAX_INDEX_NUM = this.navOption.countOfIndex;
 
     this.eventEmitter = eventEmitter;
     this._navModel = new NavModel(api, this.navOption);
     this._navView = new NavView(this.eventEmitter, root, this.navOption);
 
+    this.DEFAULT_INDEX = 1;
     this._init();
 }
 
 NavController.prototype.buildNav = function() {
-    var pages = this._navModel.getPages();
-    this._navView.renderNav(pages);
+    this._navView.renderNav(this._navModel.getPages(this.DEFAULT_INDEX));
 };
 
 NavController.prototype._init = function() {
