@@ -1,11 +1,10 @@
 var $ = require('jquery');
 var navTemplate = require('./nav.hbs');
 
-function NavView(eventEmitter, root, navOption) {
+function NavView(eventEmitter, root) {
     this.root = root;
     this.eventEmitter = eventEmitter;
     this._currentIndex = 1;
-    this._MAX_TODO_COUNT_OF_PAGE = navOption.countOfItem;
     this._init();
 }
 
@@ -15,10 +14,10 @@ NavView.prototype.onClickIndex = function(e) {
     this._currentIndex = index;
     var renderOption = {
         index: index,
-        max: this._MAX_TODO_COUNT_OF_PAGE
+        max: this._MAX_INDEX
     };
     //TODO Remove dependency
-    this.eventEmitter.emit('changePage', renderOption);
+    this.eventEmitter.emit('changePage', index);
     this.eventEmitter.emit('buildNav', renderOption);
     this.controlNav();
 };
@@ -35,15 +34,17 @@ NavView.prototype.onClickNavBtn = function(e, controlCurrentIndex) {
     // renderNav 다시. _currentIndex + 1 부터 되는대로.
     var renderOption = {
         index: this._currentIndex,
-        max: this._MAX_TODO_COUNT_OF_PAGE
+        max: this._MAX_INDEX
     };
-    this.eventEmitter.emit('changePage', renderOption);
+    this.eventEmitter.emit('changePage', this._currentIndex);
+    this.eventEmitter.emit('buildNav', renderOption);
     this.controlNav();
 };
 
-NavView.prototype.renderNav = function(pages) {
-    var pages = pages || [{ num: 1 }];
-    $(this.root).html(navTemplate({ pages: pages }));
+NavView.prototype.renderNav = function(renderOption) {
+    var renderOption = renderOption || [{ num: 1, maxIndex: 1 }];
+    this._MAX_INDEX = renderOption.maxIndex;
+    $(this.root).html(navTemplate({ pages: renderOption.pages }));
     this.controlNav();
 };
 
@@ -67,7 +68,7 @@ NavView.prototype.disabledCheck = function(target, indexNum, isOver) {
 NavView.prototype.controlNav = function() {
     this.navSelected();
     this.disabledCheck('#prevBtn', 1, false);
-    this.disabledCheck('#postBtn', 5, false);
+    this.disabledCheck('#postBtn', this._MAX_INDEX, false);
 };
 
 NavView.prototype._init = function() {

@@ -12,13 +12,10 @@ function ListController(api, root, eventEmitter) {
     this._attachEvent();
 }
 
-ListController.prototype.changePage = function(renderOption) {
-    var renderOption = renderOption || {
-            index: this._DEFAULT_PAGE_NUM,
-            max: 3
-    };
-    var startNum = (renderOption.index - 1) * renderOption.max;
-    this._listService.getTodosOfPage(startNum, renderOption.max)
+ListController.prototype.changePage = function(index) {
+    var index = index || this._DEFAULT_PAGE_NUM;
+    var startNum = (index - 1) * 3;
+    this._listService.getTodosOfPage(startNum, 3)
         .then(function(todos) {
             this._listView.renderList(todos);
         }.bind(this)).catch(function(err) {
