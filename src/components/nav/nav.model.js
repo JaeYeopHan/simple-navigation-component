@@ -11,9 +11,10 @@ function NavModel (api, navOption) {
 }
 
 NavModel.prototype.getPages = function(index) {
-    var maxIndex = (parseInt(index / this._MAX_INDEX_NUM) + 1) * 5;
+    var startIndex = parseInt((index - 1) / this._MAX_INDEX_NUM);
+    var endIndex = (startIndex + 1) * 5;
     var pages = [];
-    for (var i = index - 1; i < maxIndex; i++) {
+    for (var i = startIndex; i < endIndex; i++) {
         if (this.pages[i] !== undefined) {
             pages.push(this.pages[i]);
         }

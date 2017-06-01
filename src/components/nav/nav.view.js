@@ -11,13 +11,15 @@ function NavView(eventEmitter, root, navOption) {
 
 NavView.prototype.onClickIndex = function(e) {
     e.preventDefault();
-    var index = $(e.target).text();
-    this._currentIndex = parseInt(index);
+    var index = parseInt($(e.target).text());
+    this._currentIndex = index;
     var renderOption = {
         index: index,
         max: this._MAX_TODO_COUNT_OF_PAGE
     };
+    //TODO Remove dependency
     this.eventEmitter.emit('changePage', renderOption);
+    this.eventEmitter.emit('buildNav', renderOption);
     this.controlNav();
 };
 
