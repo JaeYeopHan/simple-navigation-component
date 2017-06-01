@@ -6,16 +6,17 @@ function ListController(api, root, eventEmitter) {
     this._listView = new ListView(this.eventEmitter, root);
     this._listService = new ListService(api);
 
-    this._DEFAULT_PAGE_NUM = 1;
+    this._DEFAULT_INDEX = 1;
+    this._MAX_TODO_COUNT_OF_PAGE = 3;
 
     this._initView();
     this._attachEvent();
 }
 
 ListController.prototype.changePage = function(index) {
-    var index = index || this._DEFAULT_PAGE_NUM;
-    var startNum = (index - 1) * 3;
-    this._listService.getTodosOfPage(startNum, 3)
+    var index = index || this._DEFAULT_INDEX;
+    var startNum = (index - 1) * this._MAX_TODO_COUNT_OF_PAGE;
+    this._listService.getTodosOfPage(startNum, this._MAX_TODO_COUNT_OF_PAGE)
         .then(function(todos) {
             this._listView.renderList(todos);
         }.bind(this)).catch(function(err) {

@@ -10,16 +10,16 @@ function NavView(eventEmitter, root) {
     this._init();
 }
 
-NavView.prototype.onClickIndex = function(e) {
+NavView.prototype._onClickIndex = function(e) {
     e.preventDefault();
     var index = parseInt($(e.target).text());
     this._currentIndex = index;
     this.eventEmitter.emit('changePage', index);//TODO Remove dependency
     this.eventEmitter.emit('buildNav', index);
-    this.controlNav();
+    this._controlNav();
 };
 
-NavView.prototype.onClickNavBtn = function(e, controlCurrentIndex) {
+NavView.prototype._onClickNavBtn = function(e, controlCurrentIndex) {
     e.preventDefault();
     if ($(e.target).closest('li').hasClass('disabled')) {
         return;
@@ -28,17 +28,17 @@ NavView.prototype.onClickNavBtn = function(e, controlCurrentIndex) {
 
     this.eventEmitter.emit('changePage', this._currentIndex);
     this.eventEmitter.emit('buildNav', this._currentIndex);
-    this.controlNav();
+    this._controlNav();
 };
 
-NavView.prototype.renderNav = function(renderOption) {
+NavView.prototype._renderNav = function(renderOption) {
     var renderOption = renderOption || [{ num: 1, maxIndex: 1 }];
     this._MAX_INDEX = renderOption.maxIndex;
     $(this.root).html(navTemplate({ pages: renderOption.pages }));
-    this.controlNav();
+    this._controlNav();
 };
 
-NavView.prototype.controlNav = function() {
+NavView.prototype._controlNav = function() {
     this._navSelected();
     this._disabledCheck('#prevBtn', this._DEFAULT_INDEX);
     this._disabledCheck('#postBtn', this._MAX_INDEX);
@@ -65,13 +65,13 @@ NavView.prototype._init = function() {
     $(this.root).on('click', function(e) {
         var target = e.target;
         if (target.matches('.page-nav')) {
-            this.onClickIndex(e);
+            this._onClickIndex(e);
         } else if (target.matches('#prevBtn')) {
-            this.onClickNavBtn(e, function() {
+            this._onClickNavBtn(e, function() {
                 this._currentIndex -= 1
             }.bind(this));
         } else if (target.matches('#postBtn')) {
-            this.onClickNavBtn(e, function() {
+            this._onClickNavBtn(e, function() {
                 this._currentIndex += 1
             }.bind(this));
         }
