@@ -1,6 +1,5 @@
 var NavView = require('./nav.view');
 var NavModel = require('./nav.model');
-var $ = require('jquery');
 
 function NavController(api, root, eventEmitter, navOption) {
     this.navOption = navOption || {
@@ -20,7 +19,7 @@ function NavController(api, root, eventEmitter, navOption) {
 NavController.prototype.buildNav = function() {
     var renderOption = this._navModel.getRenderOption();
     this._navView.renderNav({
-        pages: renderOption.index,
+        pages: renderOption.pages,
         overIndex: renderOption.overIndex
     });
 };

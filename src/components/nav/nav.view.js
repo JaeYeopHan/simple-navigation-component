@@ -9,7 +9,7 @@ function NavView(eventEmitter, root, navOption) {
     this._init();
 }
 
-NavView.prototype.onClickPageNav = function(e) {
+NavView.prototype.onClickIndex = function(e) {
     e.preventDefault();
     var index = $(e.target).text();
     this._currentIndex = parseInt(index);
@@ -21,31 +21,16 @@ NavView.prototype.onClickPageNav = function(e) {
     this.controlNav();
 };
 
-NavView.prototype.onClickPrevBtn = function(e) {
+NavView.prototype.onClickNavBtn = function(e, controlCurrentIndex) {
     e.preventDefault();
     if ($(e.target).closest('li').hasClass('disabled')) {
         return;
     }
-    this._currentIndex -= 1;
-    var renderOption = {
-        index: this._currentIndex,
-        max: this._MAX_TODO_COUNT_OF_PAGE
-    };
-    this.eventEmitter.emit('changePage', renderOption);
-    this.controlNav();
-};
-
-NavView.prototype.onClickPostBtn = function(e) {
-    e.preventDefault();
-    if ($(e.target).closest('li').hasClass('disabled')) {
-        return;
-    }
+    controlCurrentIndex();
 
     // TODO
     // controller에서 새로운 이벤트 등록
     // renderNav 다시. _currentIndex + 1 부터 되는대로.
-
-    this._currentIndex += 1;
     var renderOption = {
         index: this._currentIndex,
         max: this._MAX_TODO_COUNT_OF_PAGE
@@ -90,11 +75,15 @@ NavView.prototype._init = function() {
     $(this.root).on('click', function(e) {
         var target = e.target;
         if (target.matches('.page-nav')) {
-            this.onClickPageNav(e);
+            this.onClickIndex(e);
         } else if (target.matches('#prevBtn')) {
-            this.onClickPrevBtn(e);
+            this.onClickNavBtn(e, function() {
+                this._currentIndex -= 1
+            }.bind(this));
         } else if (target.matches('#postBtn')) {
-            this.onClickPostBtn(e);
+            this.onClickNavBtn(e, function() {
+                this._currentIndex += 1
+            }.bind(this));
         }
     }.bind(this));
 };
