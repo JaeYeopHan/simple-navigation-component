@@ -48,7 +48,7 @@ NavView.prototype._navSelected = function() {
     Array.from($('.page-nav')).forEach(function(target) {
         var $target = $(target);
         $target.parent().removeClass('active');
-        if ($target.text() == this._currentIndex) {
+        if (parseInt($target.text()) === this._currentIndex) {
             $target.parent().addClass('active');
         }
     }.bind(this));

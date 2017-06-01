@@ -7,7 +7,6 @@ function NavModel (api, navOption) {
     this._MAX_INDEX_NUM = navOption.countOfIndex;
 
     this.pages;
-    this.postOverIndex;
 }
 
 NavModel.prototype.getPages = function(index) {
@@ -44,17 +43,12 @@ NavModel.prototype.init = function() {
 NavModel.prototype._getIndexInfo = function(count) {
     var pages = [];
     var totalCountOfPage = parseInt(count / this._MAX_TODO_COUNT_OF_PAGE) + 1;
-    var postOverIndex = false;
-    if (totalCountOfPage > this._MAX_INDEX_NUM) {
-        postOverIndex = true;
-    }
     for (var i = 1; i <= totalCountOfPage; i++) {
         pages.push({ num: i });
     }
 
     return {
         pages: pages,
-        postOverIndex: postOverIndex,
         totalCountOfPage: totalCountOfPage
     };
 };
