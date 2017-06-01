@@ -7,10 +7,18 @@ var EventEmitter = require('event-emitter');
     var eventEmitter = new EventEmitter();
 
     //
-    // @param api (fetch data url)
-    // @param selector
-    // @param eventEmitter
+    // @param [required] api (fetch data url)
+    // @param [required] selector
+    // @param [required] eventEmitter
+    // @param listOption
+    //      default set
+    //      countOfItem: 3
     //
+
+    // Sample
+    // new ListComponent(api, '#list', eventEmitter, {
+    //     countOfItem: 5
+    // });
     new ListComponent(api, '#list', eventEmitter);
 
     //
@@ -19,9 +27,10 @@ var EventEmitter = require('event-emitter');
     // @param [required] eventEmitter
     // @param navOption
     //      default set
-    //      MAX_TODO_COUNT_OF_PAGE: 3
-    //      MAX_INDEX_NUM: 5
-    // Example
+    //      countOfItem: 3
+    //      countOfIndex: 5
+
+    // Sample
     // new NavComponent(api, '#nav', eventEmitter, {
     //     countOfItem: 5,
     //     countOfIndex: 3

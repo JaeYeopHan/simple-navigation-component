@@ -1,13 +1,16 @@
 var ListView = require('./list.view');
-var ListService = require('./list.service');
+var ListModel = require('./list.model');
 
-function ListController(api, root, eventEmitter) {
+function ListController(api, root, eventEmitter, listOption) {
+    this.listOption = listOption || {
+        countOfItem: 3
+    };
+
     this.eventEmitter = eventEmitter;
     this._listView = new ListView(this.eventEmitter, root);
-    this._listService = new ListService(api);
+    this._listModel = new ListModel(api, this.listOption);
 
     this._DEFAULT_INDEX = 1;
-    this._MAX_TODO_COUNT_OF_PAGE = 3;
 
     this._initView();
     this._attachEvent();
@@ -15,13 +18,16 @@ function ListController(api, root, eventEmitter) {
 
 ListController.prototype.changePage = function(index) {
     var index = index || this._DEFAULT_INDEX;
-    var startNum = (index - 1) * this._MAX_TODO_COUNT_OF_PAGE;
-    this._listService.getTodosOfPage(startNum, this._MAX_TODO_COUNT_OF_PAGE)
-        .then(function(todos) {
-            this._listView.renderList(todos);
+    var todos = this._listModel.getTodos(index);
+    if (todos === undefined) {
+        this._listModel.fetchTodos(index).then(function() {
+            this._listView.renderList(this._listModel.getTodos(index));
         }.bind(this)).catch(function(err) {
-            console.log(err);
+            console.error(err);
         });
+    } else {
+        this._listView.renderList(todos);
+    }
 };
 
 ListController.prototype._initView = function() {
