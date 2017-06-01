@@ -9,7 +9,6 @@ function NavView(eventEmitter, root, navOption) {
     this._init();
 }
 
-// index에 따른 page render
 NavView.prototype.onClickPageNav = function(e) {
     e.preventDefault();
     var index = $(e.target).text();
@@ -22,7 +21,6 @@ NavView.prototype.onClickPageNav = function(e) {
     this.controlNav();
 };
 
-// prev button에 따른 페이지 이동
 NavView.prototype.onClickPrevBtn = function(e) {
     e.preventDefault();
     if ($(e.target).closest('li').hasClass('disabled')) {
@@ -37,7 +35,6 @@ NavView.prototype.onClickPrevBtn = function(e) {
     this.controlNav();
 };
 
-// post button에 따른 페이지 이동
 NavView.prototype.onClickPostBtn = function(e) {
     e.preventDefault();
     if ($(e.target).closest('li').hasClass('disabled')) {
@@ -58,8 +55,8 @@ NavView.prototype.onClickPostBtn = function(e) {
 };
 
 NavView.prototype.renderNav = function(renderOption) {
-    var renderOption = renderOption || [{ num: 1, post: false }];
-    this.isOverIndex = renderOption.post;
+    var renderOption = renderOption || [{ num: 1, overIndex: false }];
+    this.isOverIndex = renderOption.overIndex;
     $(this.root).html(navTemplate({
         pages: renderOption.pages
     }));
@@ -76,26 +73,18 @@ NavView.prototype.navSelected = function() {
     }.bind(this));
 };
 
-NavView.prototype.prevCheck = function() {
-    var prev = $('#prevBtn').parent();
-    this._currentIndex === 1
-        ? prev.addClass('disabled')
-        : prev.removeClass('disabled');
-};
-
-NavView.prototype.postCheck = function() {
-    var post = $('#postBtn').parent();
-    //TODO Add logic
-    this._currentIndex === 5 && this.isOverIndex === false
+NavView.prototype.disabledCheck = function(target, indexNum, isOver) {
+    var post = $(target).parent();
+    this._currentIndex === indexNum || isOver
         ? post.addClass('disabled')
         : post.removeClass('disabled');
 };
 
 NavView.prototype.controlNav = function() {
     this.navSelected();
-    this.prevCheck();
-    this.postCheck();
-}
+    this.disabledCheck('#prevBtn', 1, false);
+    this.disabledCheck('#postBtn', 5, this.isOverIndex);
+};
 
 NavView.prototype._init = function() {
     $(this.root).on('click', function(e) {
