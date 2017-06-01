@@ -11,19 +11,18 @@ function NavModel (api, navOption) {
 }
 
 NavModel.prototype.getPages = function(index) {
-    var startIndex = parseInt((index - 1) / this._MAX_INDEX_NUM);
-    var endIndex = (startIndex + 1) * 5;
-    var maxIndex = 0;
+    var base = parseInt((index - 1) / this._MAX_INDEX_NUM);
+    var startIndex = base * 5;
+    var endIndex = (base + 1) * 5;
     var pages = [];
     for (var i = startIndex; i < endIndex; i++) {
         if (this.pages[i] !== undefined) {
             pages.push(this.pages[i]);
-            maxIndex++;
         }
     }
     return {
         pages: pages,
-        maxIndex: maxIndex
+        maxIndex: this.totalCountOfPage
     };
 };
 
@@ -44,12 +43,12 @@ NavModel.prototype.init = function() {
 
 NavModel.prototype._getIndexInfo = function(count) {
     var pages = [];
-    var totalCountOfPage = count / this._MAX_TODO_COUNT_OF_PAGE;
+    var totalCountOfPage = parseInt(count / this._MAX_TODO_COUNT_OF_PAGE) + 1;
     var postOverIndex = false;
     if (totalCountOfPage > this._MAX_INDEX_NUM) {
         postOverIndex = true;
     }
-    for (var i = 1; i <= totalCountOfPage + 1; i++) {
+    for (var i = 1; i <= totalCountOfPage; i++) {
         pages.push({ num: i });
     }
 

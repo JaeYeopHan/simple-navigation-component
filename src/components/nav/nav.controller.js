@@ -13,14 +13,15 @@ function NavController(api, root, eventEmitter, navOption) {
     this._MAX_TODO_COUNT_OF_PAGE = this.navOption.countOfItem;
 
     this._DEFAULT_INDEX = 1;
+    this._MAX_INDEX = 3;
     this._init();
 }
 
 NavController.prototype.buildNav = function(renderOption) {
     var renderOption = renderOption || {
             index: this._DEFAULT_INDEX,
-            max: this._MAX_TODO_COUNT_OF_PAGE
-        };
+            max: this._MAX_INDEX
+    };
     this._navView.renderNav(this._navModel.getPages(renderOption.index));
 };
 

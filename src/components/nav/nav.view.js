@@ -29,9 +29,6 @@ NavView.prototype.onClickNavBtn = function(e, controlCurrentIndex) {
     }
     controlCurrentIndex();
 
-    // TODO
-    // controller에서 새로운 이벤트 등록
-    // renderNav 다시. _currentIndex + 1 부터 되는대로.
     var renderOption = {
         index: this._currentIndex,
         max: this._MAX_INDEX
@@ -58,17 +55,17 @@ NavView.prototype.navSelected = function() {
     }.bind(this));
 };
 
-NavView.prototype.disabledCheck = function(target, indexNum, isOver) {
+NavView.prototype.disabledCheck = function(target, indexNum) {
     var post = $(target).parent();
-    this._currentIndex === indexNum || isOver
+    (this._currentIndex === indexNum)
         ? post.addClass('disabled')
         : post.removeClass('disabled');
 };
 
 NavView.prototype.controlNav = function() {
     this.navSelected();
-    this.disabledCheck('#prevBtn', 1, false);
-    this.disabledCheck('#postBtn', this._MAX_INDEX, false);
+    this.disabledCheck('#prevBtn', 1);
+    this.disabledCheck('#postBtn', this._MAX_INDEX);
 };
 
 NavView.prototype._init = function() {
