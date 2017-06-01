@@ -17,12 +17,9 @@ function NavController(api, root, eventEmitter, navOption) {
     this._init();
 }
 
-NavController.prototype.buildNav = function(renderOption) {
-    var renderOption = renderOption || {
-            index: this._DEFAULT_INDEX,
-            max: this._MAX_INDEX
-    };
-    this._navView.renderNav(this._navModel.getPages(renderOption.index));
+NavController.prototype.buildNav = function(index) {
+    var index = index || this._DEFAULT_INDEX;
+    this._navView.renderNav(this._navModel.getPages(index));
 };
 
 NavController.prototype._init = function() {

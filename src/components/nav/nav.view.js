@@ -5,6 +5,8 @@ function NavView(eventEmitter, root) {
     this.root = root;
     this.eventEmitter = eventEmitter;
     this._currentIndex = 1;
+    this._DEFAULT_INDEX = 1;
+
     this._init();
 }
 
@@ -12,13 +14,8 @@ NavView.prototype.onClickIndex = function(e) {
     e.preventDefault();
     var index = parseInt($(e.target).text());
     this._currentIndex = index;
-    var renderOption = {
-        index: index,
-        max: this._MAX_INDEX
-    };
-    //TODO Remove dependency
-    this.eventEmitter.emit('changePage', index);
-    this.eventEmitter.emit('buildNav', renderOption);
+    this.eventEmitter.emit('changePage', index);//TODO Remove dependency
+    this.eventEmitter.emit('buildNav', index);
     this.controlNav();
 };
 
@@ -29,12 +26,8 @@ NavView.prototype.onClickNavBtn = function(e, controlCurrentIndex) {
     }
     controlCurrentIndex();
 
-    var renderOption = {
-        index: this._currentIndex,
-        max: this._MAX_INDEX
-    };
     this.eventEmitter.emit('changePage', this._currentIndex);
-    this.eventEmitter.emit('buildNav', renderOption);
+    this.eventEmitter.emit('buildNav', this._currentIndex);
     this.controlNav();
 };
 
@@ -45,7 +38,13 @@ NavView.prototype.renderNav = function(renderOption) {
     this.controlNav();
 };
 
-NavView.prototype.navSelected = function() {
+NavView.prototype.controlNav = function() {
+    this._navSelected();
+    this._disabledCheck('#prevBtn', this._DEFAULT_INDEX);
+    this._disabledCheck('#postBtn', this._MAX_INDEX);
+};
+
+NavView.prototype._navSelected = function() {
     Array.from($('.page-nav')).forEach(function(target) {
         var $target = $(target);
         $target.parent().removeClass('active');
@@ -55,17 +54,11 @@ NavView.prototype.navSelected = function() {
     }.bind(this));
 };
 
-NavView.prototype.disabledCheck = function(target, indexNum) {
-    var post = $(target).parent();
+NavView.prototype._disabledCheck = function(target, indexNum) {
+    var navBtn = $(target).parent();
     (this._currentIndex === indexNum)
-        ? post.addClass('disabled')
-        : post.removeClass('disabled');
-};
-
-NavView.prototype.controlNav = function() {
-    this.navSelected();
-    this.disabledCheck('#prevBtn', 1);
-    this.disabledCheck('#postBtn', this._MAX_INDEX);
+        ? navBtn.addClass('disabled')
+        : navBtn.removeClass('disabled');
 };
 
 NavView.prototype._init = function() {
