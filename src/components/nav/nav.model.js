@@ -4,15 +4,15 @@ function NavModel(api, navOption) {
     this._navService = new NavService(api);
 
     this._MAX_TODO_COUNT_OF_PAGE = navOption.countOfItem;
-    this._MAX_INDEX_NUM = navOption.countOfIndex;
+    this._IDX_COUNT = navOption.countOfIndex;
 
     this.pages;
 }
 
 NavModel.prototype.getPages = function(index) {
-    var base = parseInt((index - 1) / this._MAX_INDEX_NUM);
-    var startIndex = base * this._MAX_INDEX_NUM;
-    var endIndex = (base + 1) * this._MAX_INDEX_NUM;
+    var base = parseInt((index - 1) / this._IDX_COUNT);
+    var startIndex = base * this._IDX_COUNT;
+    var endIndex = (base + 1) * this._IDX_COUNT;
     var pages = [];
     for (var i = startIndex; i < endIndex; i++) {
         if (this.pages[i] !== undefined) {
@@ -21,14 +21,13 @@ NavModel.prototype.getPages = function(index) {
     }
     return {
         pages: pages,
-        maxIndex: this.totalCountOfPage
+        maxIndex: this.maxIndex
     };
 };
 
 NavModel.prototype.setRenderOption = function(renderOption) {
     this.pages = renderOption.pages;
-    this.postOverIndex = renderOption.postOverIndex;
-    this.totalCountOfPage = renderOption.totalCountOfPage;
+    this.maxIndex = renderOption.maxIndex;
 };
 
 NavModel.prototype.init = function() {
@@ -42,14 +41,14 @@ NavModel.prototype.init = function() {
 
 NavModel.prototype._getIndexInfo = function(count) {
     var pages = [];
-    var totalCountOfPage = parseInt(count / this._MAX_TODO_COUNT_OF_PAGE) + 1;
-    for (var i = 1; i <= totalCountOfPage; i++) {
+    var maxIndex = parseInt(count / this._MAX_TODO_COUNT_OF_PAGE) + 1;
+    for (var i = 1; i <= maxIndex; i++) {
         pages.push({ num: i });
     }
 
     return {
         pages: pages,
-        totalCountOfPage: totalCountOfPage
+        maxIndex: maxIndex
     };
 };
 

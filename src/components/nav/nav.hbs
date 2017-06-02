@@ -1,6 +1,11 @@
 <nav aria-label="Page navigation">
   <ul class="pagination">
     <li class="disabled">
+      <a href="#" aria-label="Next" id="prevPageBtn">
+        <span aria-hidden="true">이전</span>
+      </a>
+    </li>
+    <li>
       <a href="#" aria-label="Previous" id="prevBtn">
         <span aria-hidden="true">&laquo;</span>
       </a>
@@ -9,8 +14,13 @@
     <li><a href="#" class="page-nav">{{num}}</a></li>
     {{/pages}}
     <li>
-      <a href="#" aria-label="Next" id="postBtn">
+      <a href="#" aria-label="Next" id="nextBtn">
         <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" aria-label="Next" id="nextPageBtn">
+        <span aria-hidden="true">다음</span>
       </a>
     </li>
   </ul>

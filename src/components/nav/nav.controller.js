@@ -10,7 +10,7 @@ function NavController(api, root, navOption) {
 
     this.eventEmitter = new EventEmitter();
     this._navModel = new NavModel(api, this.navOption);
-    this._navView = new NavView(this.eventEmitter, root);
+    this._navView = new NavView(this.eventEmitter, root, this.navOption);
 
     this._DEFAULT_INDEX = 1;
 

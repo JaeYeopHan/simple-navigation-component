@@ -1,11 +1,12 @@
 var $ = require('jquery');
 var navTemplate = require('./nav.hbs');
 
-function NavView(eventEmitter, root) {
+function NavView(eventEmitter, root, navOption) {
     this.root = root;
     this.eventEmitter = eventEmitter;
     this._DEFAULT_INDEX = 1;
-    this._currentIndex = this._DEFAULT_INDEX;
+    this._curIdx = this._DEFAULT_INDEX;
+    this._IDX_COUNT = navOption.countOfIndex;
 
     this._init();
 }
@@ -13,7 +14,7 @@ function NavView(eventEmitter, root) {
 NavView.prototype._onClickIndex = function(e) {
     e.preventDefault();
     var index = parseInt($(e.target).text());
-    this._currentIndex = index;
+    this._curIdx = index;
     this.eventEmitter.emit('buildNav', index);
     this._controlNav();
 };
@@ -25,38 +26,38 @@ NavView.prototype._onClickNavBtn = function(e, controlCurrentIndex) {
     }
     controlCurrentIndex();
 
-    this.eventEmitter.emit('buildNav', this._currentIndex);
+    this.eventEmitter.emit('buildNav', this._curIdx);
     this._controlNav();
 };
 
 NavView.prototype._renderNav = function(renderOption) {
     var renderOption = renderOption || [{ num: 1, maxIndex: 1 }];
-    this._MAX_INDEX = renderOption.maxIndex;
+    this._MAX = renderOption.maxIndex;
     $(this.root).html(navTemplate({ pages: renderOption.pages }));
     this._controlNav();
 };
 
 NavView.prototype._controlNav = function() {
     this._navSelected();
-    this._disabledCheck('#prevBtn', this._DEFAULT_INDEX);
-    this._disabledCheck('#postBtn', this._MAX_INDEX);
+    this._ableCheck('#prevBtn', this._curIdx === this._DEFAULT_INDEX);
+    this._ableCheck('#nextBtn', this._curIdx === this._MAX);
+    this._ableCheck('#prevPageBtn', this._curIdx <= this._IDX_COUNT);
+    this._ableCheck('#nextPageBtn', (this._curIdx + this._IDX_COUNT - 1 > this._MAX));
 };
 
 NavView.prototype._navSelected = function() {
     Array.from($('.page-nav')).forEach(function(target) {
         var $target = $(target);
         $target.parent().removeClass('active');
-        if (parseInt($target.text()) === this._currentIndex) {
+        if (parseInt($target.text()) === this._curIdx) {
             $target.parent().addClass('active');
         }
     }.bind(this));
 };
 
-NavView.prototype._disabledCheck = function(target, indexNum) {
+NavView.prototype._ableCheck = function(target, condition) {
     var navBtn = $(target).parent();
-    (this._currentIndex === indexNum)
-        ? navBtn.addClass('disabled')
-        : navBtn.removeClass('disabled');
+    (condition) ? navBtn.addClass('disabled') : navBtn.removeClass('disabled');
 };
 
 NavView.prototype._init = function() {
@@ -66,11 +67,19 @@ NavView.prototype._init = function() {
             this._onClickIndex(e);
         } else if (target.matches('#prevBtn')) {
             this._onClickNavBtn(e, function() {
-                this._currentIndex -= 1
+                this._curIdx -= this._DEFAULT_INDEX;
             }.bind(this));
-        } else if (target.matches('#postBtn')) {
+        } else if (target.matches('#nextBtn')) {
             this._onClickNavBtn(e, function() {
-                this._currentIndex += 1
+                this._curIdx += this._DEFAULT_INDEX;
+            }.bind(this));
+        } else if (target.matches('#prevPageBtn')) {
+            this._onClickNavBtn(e, function() {
+                this._curIdx -= (this._curIdx - 1) % this._IDX_COUNT + this._IDX_COUNT;
+            }.bind(this));
+        } else if (target.matches('#nextPageBtn')) {
+            this._onClickNavBtn(e, function() {
+                this._curIdx += this._IDX_COUNT - ((this._curIdx - 1) % this._IDX_COUNT);
             }.bind(this));
         }
     }.bind(this));
