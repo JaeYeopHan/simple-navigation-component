@@ -42,7 +42,8 @@ NavView.prototype._controlNav = function() {
     this._ableCheck('#prevBtn', this._curIdx === this._DEFAULT_INDEX);
     this._ableCheck('#nextBtn', this._curIdx === this._MAX);
     this._ableCheck('#prevPageBtn', this._curIdx <= this._IDX_COUNT);
-    this._ableCheck('#nextPageBtn', (this._curIdx + this._IDX_COUNT - 1 > this._MAX));
+    var nextValue = parseInt((this._curIdx - 1) / this._IDX_COUNT + 1) * this._IDX_COUNT;
+    this._ableCheck('#nextPageBtn', (nextValue > this._MAX));
 };
 
 NavView.prototype._navSelected = function() {
