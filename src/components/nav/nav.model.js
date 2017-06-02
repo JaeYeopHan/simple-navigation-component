@@ -3,7 +3,7 @@ var NavService = require('./nav.service');
 function NavModel(api, navOption) {
     this._navService = new NavService(api);
 
-    this._MAX_TODO_COUNT_OF_PAGE = navOption.countOfItem;
+    this._TODO_COUNT = navOption.countOfItem;
     this._IDX_COUNT = navOption.countOfIndex;
 
     this.pages;
@@ -13,14 +13,14 @@ NavModel.prototype.getPages = function(index) {
     var base = parseInt((index - 1) / this._IDX_COUNT);
     var startIndex = base * this._IDX_COUNT;
     var endIndex = (base + 1) * this._IDX_COUNT;
-    var pages = [];
+    var result = [];
     for (var i = startIndex; i < endIndex; i++) {
         if (this.pages[i] !== undefined) {
-            pages.push(this.pages[i]);
+            result.push(this.pages[i]);
         }
     }
     return {
-        pages: pages,
+        pages: result,
         maxIndex: this.maxIndex
     };
 };
@@ -41,7 +41,10 @@ NavModel.prototype.init = function() {
 
 NavModel.prototype._getIndexInfo = function(count) {
     var pages = [];
-    var maxIndex = parseInt(count / this._MAX_TODO_COUNT_OF_PAGE) + 1;
+    var maxIndex = parseInt(count / this._TODO_COUNT);
+    if ((count % this._TODO_COUNT) !== 0) {
+        maxIndex += 1;
+    }
     for (var i = 1; i <= maxIndex; i++) {
         pages.push({ num: i });
     }
