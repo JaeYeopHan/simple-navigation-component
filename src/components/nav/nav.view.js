@@ -4,8 +4,8 @@ var navTemplate = require('./nav.hbs');
 function NavView(eventEmitter, root) {
     this.root = root;
     this.eventEmitter = eventEmitter;
-    this._currentIndex = 1;
     this._DEFAULT_INDEX = 1;
+    this._currentIndex = this._DEFAULT_INDEX;
 
     this._init();
 }

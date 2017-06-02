@@ -13,6 +13,7 @@ function NavController(api, root, navOption) {
     this._navView = new NavView(this.eventEmitter, root);
 
     this._DEFAULT_INDEX = 1;
+
     this._init();
 }
 

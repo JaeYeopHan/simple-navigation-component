@@ -1,6 +1,6 @@
 var NavService = require('./nav.service');
 
-function NavModel (api, navOption) {
+function NavModel(api, navOption) {
     this._navService = new NavService(api);
 
     this._MAX_TODO_COUNT_OF_PAGE = navOption.countOfItem;

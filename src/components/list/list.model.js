@@ -21,8 +21,8 @@ ListModel.prototype.fetchTodos = function(index) {
         .then(function(todos) {
             this.setTodos(index, todos);
         }.bind(this)).catch(function(err) {
-        console.error(err);
-    });
+            console.error(err);
+        });
 };
 
 module.exports = ListModel;

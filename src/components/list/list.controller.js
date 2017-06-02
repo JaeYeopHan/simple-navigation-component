@@ -8,12 +8,12 @@ function ListController(api, root, listOption) {
     };
 
     this.eventEmitter = new EventEmitter();
-    this._listView = new ListView(this.eventEmitter, root);
     this._listModel = new ListModel(api, this.listOption);
+    this._listView = new ListView(this.eventEmitter, root);
 
     this._DEFAULT_INDEX = 1;
 
-    this._initView();
+    this._init();
 }
 
 ListController.prototype.changePage = function(index) {
@@ -30,7 +30,7 @@ ListController.prototype.changePage = function(index) {
     }
 };
 
-ListController.prototype._initView = function() {
+ListController.prototype._init = function() {
     this.changePage();
 };
 
