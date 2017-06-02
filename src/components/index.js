@@ -1,10 +1,8 @@
 var ListComponent = require('./list');
 var NavComponent = require('./nav');
-var EventEmitter = require('event-emitter');
 
 module.exports = function Components() {
     var api = 'http://128.199.76.9:8002/jbee/todo';
-    var eventEmitter = new EventEmitter();
 
     //
     // @param [required] api (fetch data url)
@@ -15,10 +13,12 @@ module.exports = function Components() {
     //      countOfItem: 3
 
     // Sample
-    // new ListComponent(api, '#list', eventEmitter, {
+    // new ListComponent(api, '#list', {
     //     countOfItem: 5
     // });
-    new ListComponent(api, '#list', eventEmitter);
+
+    var list = new ListComponent(api, '#list');
+
 
     //
     // @param [required] api (fetch data url)
@@ -30,9 +30,15 @@ module.exports = function Components() {
     //      countOfIndex: 5
 
     // Sample
-    // new NavComponent(api, '#nav', eventEmitter, {
+    // new NavComponent(api, '#nav', {
     //     countOfItem: 5,
     //     countOfIndex: 3
     // });
-    var nav = new NavComponent(api, '#nav', eventEmitter);
+
+    var nav = new NavComponent(api, '#nav');
+    nav.on('buildNav', function(data) {
+        nav.buildNav.call(nav, data);
+        list.changePage.call(list, data);
+    });
+
 };

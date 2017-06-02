@@ -14,7 +14,6 @@ NavView.prototype._onClickIndex = function(e) {
     e.preventDefault();
     var index = parseInt($(e.target).text());
     this._currentIndex = index;
-    this.eventEmitter.emit('changePage', index);//TODO Remove dependency
     this.eventEmitter.emit('buildNav', index);
     this._controlNav();
 };
@@ -26,7 +25,6 @@ NavView.prototype._onClickNavBtn = function(e, controlCurrentIndex) {
     }
     controlCurrentIndex();
 
-    this.eventEmitter.emit('changePage', this._currentIndex);
     this.eventEmitter.emit('buildNav', this._currentIndex);
     this._controlNav();
 };
