@@ -4,8 +4,8 @@ var EventEmitter = require('event-emitter');
 
 function NavController(api, root, navOption) {
     this.navOption = navOption || {
-            countOfItem: 3,
-            countOfIndex: 5
+        countOfItem: 3,
+        countOfIndex: 5
     };
 
     this.eventEmitter = new EventEmitter();
