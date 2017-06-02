@@ -13,7 +13,7 @@ module.exports = function Components() {
     //      countOfItem: 3
 
     // Sample
-    // new ListComponent(api, '#list', {
+    // var list = new ListComponent(api, '#list', {
     //     countOfItem: 5
     // });
 
@@ -30,7 +30,7 @@ module.exports = function Components() {
     //      countOfIndex: 5
 
     // Sample
-    // new NavComponent(api, '#nav', {
+    // var nav = new NavComponent(api, '#nav', {
     //     countOfItem: 5,
     //     countOfIndex: 3
     // });
