@@ -7,7 +7,6 @@ module.exports = function Components() {
     //
     // @param [required] api (fetch data url)
     // @param [required] selector
-    // @param [required] eventEmitter
     // @param listOption
     //      default set
     //      countOfItem: 3
@@ -28,7 +27,6 @@ module.exports = function Components() {
     //
     // @param [required] api (fetch data url)
     // @param [required] selector
-    // @param [required] eventEmitter
     // @param navOption
     //      default set
     //      countOfItem: 3
