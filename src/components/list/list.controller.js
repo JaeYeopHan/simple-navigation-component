@@ -7,17 +7,17 @@ function ListController(api, root, listOption) {
         countOfItem: 3
     };
 
-    this.eventEmitter = new EventEmitter();
+    this._eventEmitter = new EventEmitter();
     this._listModel = new ListModel(api, this.listOption);
-    this._listView = new ListView(this.eventEmitter, root);
+    this._listView = new ListView(this._eventEmitter, root);
 
-    this._DEFAULT_INDEX = 1;
+    this.DEFAULT_INDEX = 1;
 
     this._init();
 }
 
 ListController.prototype.changePage = function(index) {
-    var index = index || this._DEFAULT_INDEX;
+    var index = index || this.DEFAULT_INDEX;
     var todos = this._listModel.getTodos(index);
     if (todos === undefined) {
         this._listModel.fetchTodos(index).then(function() {
@@ -35,7 +35,7 @@ ListController.prototype._init = function() {
 };
 
 ListController.prototype.on = function(event, callback) {
-    this.eventEmitter.on(event, callback);
+    this._eventEmitter.on(event, callback);
 };
 
 module.exports = ListController;

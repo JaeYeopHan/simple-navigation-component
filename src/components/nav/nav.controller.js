@@ -8,18 +8,18 @@ function NavController(api, root, navOption) {
         countOfIndex: 5
     };
 
-    this.eventEmitter = new EventEmitter();
+    this._eventEmitter = new EventEmitter();
     this._navModel = new NavModel(api, this.navOption);
-    this._navView = new NavView(this.eventEmitter, root, this.navOption);
+    this._navView = new NavView(this._eventEmitter, root, this.navOption);
 
-    this._DEFAULT_INDEX = 1;
+    this.DEFAULT_INDEX = 1;
 
     this._init();
 }
 
 NavController.prototype.buildNav = function(index) {
-    var index = index || this._DEFAULT_INDEX;
-    this._navView._renderNav(this._navModel.getPages(index));
+    var index = index || this.DEFAULT_INDEX;
+    this._navView.renderNav(this._navModel.getPages(index));
 };
 
 NavController.prototype._init = function() {
@@ -31,7 +31,7 @@ NavController.prototype._init = function() {
 };
 
 NavController.prototype.on = function(event, callback) {
-    this.eventEmitter.on(event, callback);
+    this._eventEmitter.on(event, callback);
 };
 
 module.exports = NavController;

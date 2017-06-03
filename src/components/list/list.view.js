@@ -3,7 +3,7 @@ var listTemplate = require('./list.hbs');
 
 function ListView(eventEmitter, root) {
     this.root = root;
-    this.eventEmitter = eventEmitter;
+    this._eventEmitter = eventEmitter;
 }
 
 ListView.prototype.renderList = function(todos) {
