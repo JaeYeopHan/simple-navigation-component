@@ -1,4 +1,4 @@
-var Components = require('./components');
+var Todo = require('./components');
 (function() {
-    new Components();
+    new Todo();
 }());
