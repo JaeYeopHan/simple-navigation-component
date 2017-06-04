@@ -2,7 +2,7 @@ var ListService = require('./list.service');
 
 function ListModel(api, listOption) {
     this._listService = new ListService(api);
-    this._TODO_COUNT = listOption.countOfItem;
+    this.TODO_COUNT = listOption.countOfItem;
 
     this.todoModel = [];
 }
@@ -16,8 +16,8 @@ ListModel.prototype.setTodos = function(index, todos) {
 };
 
 ListModel.prototype.fetchTodos = function(index) {
-    var startNum = (index - 1) * this._TODO_COUNT;
-    return this._listService.getTodosOfPage(startNum, this._TODO_COUNT)
+    var startNum = (index - 1) * this.TODO_COUNT;
+    return this._listService.getTodosOfPage(startNum, this.TODO_COUNT)
         .then(function(todos) {
             this.setTodos(index, todos);
         }.bind(this)).catch(function(err) {

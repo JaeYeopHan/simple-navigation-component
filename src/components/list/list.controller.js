@@ -16,12 +16,20 @@ function ListController(api, root, listOption) {
     this._init();
 }
 
-ListController.prototype.changePage = function(index) {
-    var index = index || this.DEFAULT_INDEX;
-    var todos = this._listModel.getTodos(index);
+ListController.prototype.changePage = function(renderOption) {
+    var renderOption = renderOption || {
+        index: this.DEFAULT_INDEX,
+        max: this.listOption.countOfItem
+    };
+
+    if (this.listOption.countOfItem !== renderOption.max) {
+        console.error('NotMatch renderOption!');
+    }
+
+    var todos = this._listModel.getTodos(renderOption.index);
     if (todos === undefined) {
-        this._listModel.fetchTodos(index).then(function() {
-            this._listView.renderList(this._listModel.getTodos(index));
+        this._listModel.fetchTodos(renderOption.index).then(function() {
+            this._listView.renderList(this._listModel.getTodos(renderOption.index));
         }.bind(this)).catch(function(err) {
             console.error(err);
         });

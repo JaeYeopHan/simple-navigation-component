@@ -10,7 +10,6 @@ module.exports = function Components() {
     // @param listOption
     //      default set
     //      countOfItem: 3
-
     // Events in list component supported by default
     // - changePage
     //      @param index
@@ -24,13 +23,16 @@ module.exports = function Components() {
     var list = new ListComponent(api, '#list');
 
 
-    //
     // @param [required] api (fetch data url)
     // @param [required] selector
     // @param navOption
     //      default set
     //      countOfItem: 3
     //      countOfIndex: 5
+    // Events in nav component supported by default
+    // - buildNav
+    //      @param index
+    //      @return void
 
     // Sample
     // var nav = new NavComponent(api, '#nav', {
@@ -38,13 +40,9 @@ module.exports = function Components() {
     //     countOfIndex: 3
     // });
 
-    // Events in nav component supported by default
-    // - buildNav
-    //      @param index
-    //      @return void
-
     var nav = new NavComponent(api, '#nav');
     nav.on('buildNav', function(data) {
+        console.log('data: ', data);
         nav.buildNav.call(nav, data);
         list.changePage.call(list, data);
     });

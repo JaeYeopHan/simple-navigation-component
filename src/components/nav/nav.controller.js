@@ -17,9 +17,12 @@ function NavController(api, root, navOption) {
     this._init();
 }
 
-NavController.prototype.buildNav = function(index) {
-    var index = index || this.DEFAULT_INDEX;
-    this._navView.renderNav(this._navModel.getPages(index));
+NavController.prototype.buildNav = function(renderOption) {
+    var renderOption = renderOption || {
+        index: this.DEFAULT_INDEX,
+        max: this.navOption.countOfItem
+    };
+    this._navView.renderNav(this._navModel.getPages(renderOption.index));
 };
 
 NavController.prototype._init = function() {

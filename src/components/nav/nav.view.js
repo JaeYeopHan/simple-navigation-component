@@ -7,15 +7,18 @@ function NavView(eventEmitter, root, navOption) {
     this.DEFAULT_INDEX = 1;
     this.curIdx = this.DEFAULT_INDEX;
     this.IDX_COUNT = navOption.countOfIndex;
+    this.TODO_COUNT = navOption.countOfItem;
 
     this._init();
 }
 
 NavView.prototype.onClickIndex = function(e) {
     e.preventDefault();
-    var index = parseInt($(e.target).text());
-    this.curIdx = index;
-    this._eventEmitter.emit('buildNav', index);
+    this.curIdx = parseInt($(e.target).text());
+    this._eventEmitter.emit('buildNav', {
+        index: this.curIdx,
+        max: this.TODO_COUNT
+    });
     this.controlNav();
 };
 
@@ -26,7 +29,10 @@ NavView.prototype.onClickNavBtn = function(e, controlCurrentIndex) {
     }
     controlCurrentIndex();
 
-    this._eventEmitter.emit('buildNav', this.curIdx);
+    this._eventEmitter.emit('buildNav', {
+        index: this.curIdx,
+        max: this.TODO_COUNT
+    });
     this.controlNav();
 };
 
