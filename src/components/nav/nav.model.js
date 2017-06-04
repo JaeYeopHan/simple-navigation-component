@@ -6,7 +6,7 @@ function NavModel(api, navOption) {
     this.TODO_COUNT = navOption.countOfItem;
     this.IDX_COUNT = navOption.countOfIndex;
 
-    this.pages;
+    this.pages = [];
 }
 
 NavModel.prototype.getPages = function(index) {
