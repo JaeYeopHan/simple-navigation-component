@@ -4,6 +4,7 @@ var navTemplate = require('./nav.hbs');
 function NavView(eventEmitter, root, navOption) {
     this.root = root;
     this._eventEmitter = eventEmitter;
+
     this.DEFAULT_INDEX = 1;
     this.curIdx = this.DEFAULT_INDEX;
     this.IDX_COUNT = navOption.countOfIndex;
