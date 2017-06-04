@@ -22,13 +22,12 @@ NavView.prototype.onClickIndex = function(e) {
     this.controlNav();
 };
 
-NavView.prototype.onClickNavBtn = function(e, controlCurrentIndex) {
+NavView.prototype.onClickNavBtn = function(e, changeCurIdx) {
     e.preventDefault();
     if ($(e.target).closest('li').hasClass('disabled')) {
         return;
     }
-    controlCurrentIndex();
-
+    this.curIdx = changeCurIdx();
     this._eventEmitter.emit('buildNav', {
         index: this.curIdx,
         max: this.TODO_COUNT
@@ -48,8 +47,8 @@ NavView.prototype.controlNav = function() {
     this.ableCheck('#prevBtn', this.curIdx === this.DEFAULT_INDEX);
     this.ableCheck('#nextBtn', this.curIdx === this._MAX);
     this.ableCheck('#prevPageBtn', this.curIdx <= this.IDX_COUNT);
-    var nextValue = parseInt((this.curIdx - 1) / this.IDX_COUNT + 1) * this.IDX_COUNT;
-    this.ableCheck('#nextPageBtn', (nextValue > this._MAX));
+    var isAbleToNext = parseInt((this.curIdx - 1) / this.IDX_COUNT + 1) * this.IDX_COUNT;
+    this.ableCheck('#nextPageBtn', (isAbleToNext > this._MAX));
 };
 
 NavView.prototype.navSelected = function() {
@@ -74,19 +73,21 @@ NavView.prototype._init = function() {
             this.onClickIndex(e);
         } else if (target.matches('#prevBtn')) {
             this.onClickNavBtn(e, function() {
-                this.curIdx -= this.DEFAULT_INDEX;
+                return this.curIdx - this.DEFAULT_INDEX;
             }.bind(this));
         } else if (target.matches('#nextBtn')) {
             this.onClickNavBtn(e, function() {
-                this.curIdx += this.DEFAULT_INDEX;
+                return this.curIdx + this.DEFAULT_INDEX;
             }.bind(this));
         } else if (target.matches('#prevPageBtn')) {
             this.onClickNavBtn(e, function() {
-                this.curIdx -= (this.curIdx - 1) % this.IDX_COUNT + this.IDX_COUNT;
+                var toPrevPage = (this.curIdx - 1) % this.IDX_COUNT + this.IDX_COUNT;
+                return this.curIdx - toPrevPage;
             }.bind(this));
         } else if (target.matches('#nextPageBtn')) {
             this.onClickNavBtn(e, function() {
-                this.curIdx += this.IDX_COUNT - ((this.curIdx - 1) % this.IDX_COUNT);
+                var toNextPage = this.IDX_COUNT - ((this.curIdx - 1) % this.IDX_COUNT);
+                return this.curIdx + toNextPage;
             }.bind(this));
         }
     }.bind(this));

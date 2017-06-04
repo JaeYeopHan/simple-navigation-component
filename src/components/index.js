@@ -42,7 +42,6 @@ module.exports = function Components() {
 
     var nav = new NavComponent(api, '#nav');
     nav.on('buildNav', function(data) {
-        console.log('data: ', data);
         nav.buildNav.call(nav, data);
         list.changePage.call(list, data);
     });
