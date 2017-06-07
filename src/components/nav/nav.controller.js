@@ -17,7 +17,7 @@ function NavController(api, root, navOption) {
     this._init();
 }
 
-NavController.prototype.buildNav = function(renderOption) {
+NavController.prototype.render = function(renderOption) {
     var renderOption = renderOption || {
         index: this.DEFAULT_INDEX,
         max: this.navOption.countOfItem
@@ -27,10 +27,17 @@ NavController.prototype.buildNav = function(renderOption) {
 
 NavController.prototype._init = function() {
     this._navModel.init().then(function() {
-        this.buildNav();
+        this.render();
+        this._attachEvent();
     }.bind(this)).catch(function(err) {
         console.error(err);
     });
+};
+
+NavController.prototype._attachEvent = function() {
+    this._eventEmitter.on('buildNav', function(data) {
+        this.render(data);
+    }.bind(this));
 };
 
 NavController.prototype.on = function(event, callback) {

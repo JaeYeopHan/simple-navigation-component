@@ -16,7 +16,7 @@ function ListController(api, root, listOption) {
     this._init();
 }
 
-ListController.prototype.changePage = function(renderOption) {
+ListController.prototype.render = function(renderOption) {
     var renderOption = renderOption || {
         index: this.DEFAULT_INDEX,
         max: this.listOption.countOfItem
@@ -39,7 +39,7 @@ ListController.prototype.changePage = function(renderOption) {
 };
 
 ListController.prototype._init = function() {
-    this.changePage();
+    this.render();
 };
 
 ListController.prototype.on = function(event, callback) {
