@@ -1,4 +1,4 @@
-var $ = require('jquery');
+const $ = require('jquery');
 
 function NavService(api) {
     this._api = api;

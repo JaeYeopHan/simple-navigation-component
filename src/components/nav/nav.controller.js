@@ -1,6 +1,6 @@
-var NavView = require('./nav.view');
-var NavModel = require('./nav.model');
-var EventEmitter = require('event-emitter');
+const NavView = require('./nav.view');
+const NavModel = require('./nav.model');
+const EventEmitter = require('event-emitter');
 
 function NavController(api, root, navOption) {
     this.navOption = navOption || {
@@ -18,6 +18,7 @@ function NavController(api, root, navOption) {
 }
 
 NavController.prototype.render = function(renderOption) {
+    //TODO Change to Default paramter
     var renderOption = renderOption || {
         index: this.DEFAULT_INDEX,
         max: this.navOption.countOfItem

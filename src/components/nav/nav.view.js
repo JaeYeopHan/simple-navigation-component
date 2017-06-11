@@ -1,5 +1,5 @@
-var $ = require('jquery');
-var navTemplate = require('./nav.hbs');
+const $ = require('jquery');
+const navTemplate = require('./nav.hbs');
 
 function NavView(eventEmitter, root, navOption) {
     this.root = root;
@@ -37,6 +37,7 @@ NavView.prototype.onClickNavBtn = function(e, changeCurIdx) {
 };
 
 NavView.prototype.renderNav = function(renderOption) {
+    //TODO change to Default parameter
     var renderOption = renderOption || [{ num: 1, maxIndex: 1 }];
     this._MAX = renderOption.maxIndex;
     $(this.root).html(navTemplate({ pages: renderOption.pages }));
@@ -48,13 +49,13 @@ NavView.prototype.controlNav = function() {
     this.ableCheck('#prevBtn', this.curIdx === this.DEFAULT_INDEX);
     this.ableCheck('#nextBtn', this.curIdx === this._MAX);
     this.ableCheck('#prevPageBtn', this.curIdx <= this.IDX_COUNT);
-    var isAbleToNext = parseInt((this.curIdx - 1) / this.IDX_COUNT + 1) * this.IDX_COUNT;
+    const isAbleToNext = parseInt((this.curIdx - 1) / this.IDX_COUNT + 1) * this.IDX_COUNT;
     this.ableCheck('#nextPageBtn', (isAbleToNext > this._MAX));
 };
 
 NavView.prototype.navSelected = function() {
     Array.from($('.page-nav')).forEach(function(target) {
-        var $target = $(target);
+        const $target = $(target);
         $target.parent().removeClass('active');
         if (parseInt($target.text()) === this.curIdx) {
             $target.parent().addClass('active');
@@ -63,13 +64,13 @@ NavView.prototype.navSelected = function() {
 };
 
 NavView.prototype.ableCheck = function(target, condition) {
-    var navBtn = $(target).parent();
+    const navBtn = $(target).parent();
     (condition) ? navBtn.addClass('disabled') : navBtn.removeClass('disabled');
 };
 
 NavView.prototype._init = function() {
     $(this.root).on('click', function(e) {
-        var target = e.target;
+        const target = e.target;
         if (target.matches('.page-nav')) {
             this.onClickIndex(e);
         } else if (target.matches('#prevBtn')) {
@@ -82,12 +83,12 @@ NavView.prototype._init = function() {
             }.bind(this));
         } else if (target.matches('#prevPageBtn')) {
             this.onClickNavBtn(e, function() {
-                var toPrevPage = (this.curIdx - 1) % this.IDX_COUNT + this.IDX_COUNT;
+                const toPrevPage = (this.curIdx - 1) % this.IDX_COUNT + this.IDX_COUNT;
                 return this.curIdx - toPrevPage;
             }.bind(this));
         } else if (target.matches('#nextPageBtn')) {
             this.onClickNavBtn(e, function() {
-                var toNextPage = this.IDX_COUNT - ((this.curIdx - 1) % this.IDX_COUNT);
+                const toNextPage = this.IDX_COUNT - ((this.curIdx - 1) % this.IDX_COUNT);
                 return this.curIdx + toNextPage;
             }.bind(this));
         }

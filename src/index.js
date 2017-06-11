@@ -1,4 +1,4 @@
-var Todo = require('./components');
+const Todo = require('./components');
 (function() {
     new Todo();
 }());

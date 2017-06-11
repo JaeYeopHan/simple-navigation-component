@@ -1,8 +1,8 @@
-var ListComponent = require('./list');
-var NavComponent = require('./nav');
+const ListComponent = require('./list');
+const NavComponent = require('./nav');
 
 module.exports = function Components() {
-    var api = 'http://128.199.76.9:8002/jbee/todo';
+    const api = 'http://128.199.76.9:8002/jbee/todo';
 
     //
     // @param [required] api (fetch data url)
@@ -19,7 +19,7 @@ module.exports = function Components() {
     //     countOfItem: 5
     // });
 
-    var list = new ListComponent(api, '#list');
+    const list = new ListComponent(api, '#list');
 
 
     // @param [required] api (fetch data url)
