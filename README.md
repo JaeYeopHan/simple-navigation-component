@@ -20,9 +20,9 @@ Component development practice repository
   - [x] js uglify, minify
   
 * Unit Test
-  - [ ] mocha
-  - [ ] chai
-  - [ ] chai-http
+  - [x] mocha
+  - [x] chai
+  - [x] chai-http
   
 * Code Quality
   - [x] ESLint 적용
