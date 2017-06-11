@@ -1,14 +1,27 @@
 # Component_development_practice
-Component development practice repository
+**This is Navigation component.**  
+Simply pass api and the id value of the html you want to specify as root, and the `renderOption` to complete the navigation.
 
-## Use
+## Usage
 ```js
-    const list = new ListComponent(api, '#list');
-    const nav = new NavComponent(api, 'nav');
-    nav.on('buildNav', function(data) {
-        list.render(data);
-    });
+const list = new ListComponent(api, '#list');
+const nav = new NavComponent(api, 'nav');
+nav.on('buildNav', function(data) {
+    list.render(data);
+});
 ```
+Also,
+```js
+const list = new ListComponent(api, '#list', {
+    countOfItem: 5
+});
+const nav = new NavComponent(api, '#nav', {
+    countOfItem: 5,
+    countOfIndex: 3
+});
+```
+#### **Notice!**
+If the `renderOption` passed to the two each components is different, an error occurs. You can check it in tool for developer of browser.
 
 ## Description
 * jQuery (just for ajax)
