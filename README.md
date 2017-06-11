@@ -1,41 +1,32 @@
 # Component_development_practice
 Component development practice repository
 
-## 정리
-* jQuery
+## Use
+```js
+    const list = new ListComponent(api, '#list');
+    const nav = new NavComponent(api, 'nav');
+    nav.on('buildNav', function(data) {
+        list.render(data);
+    });
+```
+
+## Description
+* jQuery (just for ajax)
 * handlebars
-* mocha/chai
+* mocha/chai for test
 * Webpack (for bundle and minify)
   * handlebars-loader
+  * babel-loader
 * event-emitter
 * bootstrap
 
-### Requirement
-* Component
-  - [x] nav component
-  - [x] list component
-  
-* Webpack
-  - [x] js bundle
-  - [x] js uglify, minify
-  
-* Unit Test
-  - [x] mocha
-  - [x] chai
-  - [x] chai-http
-  
-* Code Quality
-  - [x] ESLint 적용
-
-
 ### Futhermore
-* Refactoring to ECMAScript 6
-  * Add babel
 * Remove jQuery
-  * DOM Select => Native
   * Ajax => fetch API or axios
 * html file uglify, minify
 * css and bootstrap uglify, minify
 * Apply Travis CI
 * Add karma
 * Add istanbul
+* Add Unit Test
+
