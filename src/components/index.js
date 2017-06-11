@@ -15,7 +15,7 @@ export default function Components() {
     //      @param { index: num, max: num }
 
     // Sample
-    // var list = new ListComponent(api, '#list', {
+    // const list = new ListComponent(api, '#list', {
     //     countOfItem: 5
     // });
 
@@ -30,7 +30,7 @@ export default function Components() {
     //      countOfIndex: 5
 
     // Sample
-    // var nav = new NavComponent(api, '#nav', {
+    // const nav = new NavComponent(api, '#nav', {
     //     countOfItem: 5,
     //     countOfIndex: 3
     // });
