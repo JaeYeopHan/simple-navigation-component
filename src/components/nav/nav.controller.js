@@ -3,11 +3,8 @@ import NavModel from './nav.model';
 import EventEmitter from 'event-emitter';
 
 class NavController {
-    constructor(api, root, navOption) {
-        this.navOption = navOption || {
-                countOfItem: 3,
-                countOfIndex: 5
-            };
+    constructor(api, root, navOption = { countOfItem: 3, countOfIndex: 5 }) {
+        this.navOption = navOption;
 
         this._eventEmitter = new EventEmitter();
         this._navModel = new NavModel(api, this.navOption);
@@ -18,28 +15,19 @@ class NavController {
         this._init();
     }
 
-    render(renderOption) {
-        //TODO Change to Default paramter
-        var renderOption = renderOption || {
-                index: this.DEFAULT_INDEX,
-                max: this.navOption.countOfItem
-            };
-        this._navView.renderNav(this._navModel.getPages(renderOption.index));
+    render({ index } = { index: this.DEFAULT_INDEX }) {
+        this._navView.renderNav(this._navModel.getPages(index));
     }
 
     _init() {
-        this._navModel.init().then(function() {
+        this._navModel.init().then(() => {
             this.render();
             this._attachEvent();
-        }.bind(this)).catch(function(err) {
-            console.error(err);
-        });
+        }).catch(err => console.error(err));
     }
 
     _attachEvent() {
-        this._eventEmitter.on('buildNav', function(data) {
-            this.render(data);
-        }.bind(this));
+        this._eventEmitter.on('buildNav', data => this.render(data));
     }
 
     on(event, callback) {

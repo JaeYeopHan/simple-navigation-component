@@ -88,9 +88,6 @@ class NavView {
                 });
             }
         });
-        // $(this.root).on('click', (e) => {
-        //
-        // });
     }
 }
 
