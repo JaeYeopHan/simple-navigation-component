@@ -1,11 +1,11 @@
 import NavService from './nav.service';
 
 class NavModel {
-    constructor(api, navOption) {
+    constructor(api, { countOfItem, countOfIndex }) {
         this._navService = new NavService(api);
 
-        this.TODO_COUNT = navOption.countOfItem;
-        this.IDX_COUNT = navOption.countOfIndex;
+        this.TODO_COUNT = countOfItem;
+        this.IDX_COUNT = countOfIndex;
 
         this.pages = [];
     }
@@ -14,30 +14,28 @@ class NavModel {
         const base = parseInt((index - 1) / this.IDX_COUNT);
         const startIndex = base * this.IDX_COUNT;
         const endIndex = (base + 1) * this.IDX_COUNT;
-        const result = [];
+        const pages = [];
         for (let i = startIndex; i < endIndex; i++) {
             if (this.pages[i] !== undefined) {
-                result.push(this.pages[i]);
+                pages.push(this.pages[i]);
             }
         }
         return {
-            pages: result,
+            pages,
             maxIndex: this.maxIndex
         };
     }
 
-    setRenderOption(renderOption) {
-        this.pages = renderOption.pages;
-        this.maxIndex = renderOption.maxIndex;
+    setRenderOption({ pages, maxIndex }) {
+        this.pages = pages;
+        this.maxIndex = maxIndex;
     }
 
     init() {
-        return this._navService.getCountOfTodos().then(function(countObj) {
-            const renderOption = this.getIndexInfo.call(this, countObj.cnt);
+        return this._navService.getCountOfTodos().then(({ cnt }) => {
+            const renderOption = this.getIndexInfo.call(this, cnt);
             this.setRenderOption(renderOption);
-        }.bind(this)).catch(function(err) {
-            console.error(err);
-        });
+        }).catch(err => console.error(err));
     }
 
     getIndexInfo(count) {
@@ -51,8 +49,8 @@ class NavModel {
         }
 
         return {
-            pages: pages,
-            maxIndex: maxIndex
+            pages,
+            maxIndex
         };
     }
 }

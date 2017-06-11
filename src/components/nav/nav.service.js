@@ -2,11 +2,11 @@ import $ from 'jquery';
 
 class NavService {
     constructor(api) {
-        this._api = api;
+        this.api = api;
     }
 
     getCountOfTodos() {
-        return $.get(this._api + '/count');
+        return $.get(`${this.api}/count`);
     }
 }
 
