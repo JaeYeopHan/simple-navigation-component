@@ -1,1 +1,2 @@
-module.exports = require('./nav.controller');
+import Nav from './nav.controller';
+export default Nav;

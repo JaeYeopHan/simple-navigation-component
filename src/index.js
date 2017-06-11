@@ -1,4 +1,5 @@
-const Todo = require('./components');
+import Todo from './components';
+
 (function() {
     new Todo();
 }());

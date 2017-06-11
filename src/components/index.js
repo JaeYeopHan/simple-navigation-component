@@ -1,7 +1,7 @@
-const ListComponent = require('./list');
-const NavComponent = require('./nav');
+import ListComponent from './list';
+import NavComponent from './nav';
 
-module.exports = function Components() {
+export default function Components() {
     const api = 'http://128.199.76.9:8002/jbee/todo';
 
     //
@@ -35,7 +35,7 @@ module.exports = function Components() {
     //     countOfIndex: 3
     // });
 
-    var nav = new NavComponent(api, '#nav');
+    const nav = new NavComponent(api, '#nav');
     nav.on('buildNav', function(data) {
         list.render(data);
     });

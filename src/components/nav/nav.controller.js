@@ -1,6 +1,6 @@
-const NavView = require('./nav.view');
-const NavModel = require('./nav.model');
-const EventEmitter = require('event-emitter');
+import NavView from './nav.view';
+import NavModel from './nav.model';
+import EventEmitter from 'event-emitter';
 
 function NavController(api, root, navOption) {
     this.navOption = navOption || {
@@ -45,4 +45,4 @@ NavController.prototype.on = function(event, callback) {
     this._eventEmitter.on(event, callback);
 };
 
-module.exports = NavController;
+export default NavController;

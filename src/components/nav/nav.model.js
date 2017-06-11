@@ -1,4 +1,4 @@
-const NavService = require('./nav.service');
+import NavService from './nav.service';
 
 function NavModel(api, navOption) {
     this._navService = new NavService(api);
@@ -55,4 +55,4 @@ NavModel.prototype.getIndexInfo = function(count) {
     };
 };
 
-module.exports = NavModel;
+export default NavModel;

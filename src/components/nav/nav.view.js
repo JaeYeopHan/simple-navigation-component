@@ -1,5 +1,5 @@
-const $ = require('jquery');
-const navTemplate = require('./nav.hbs');
+import $ from 'jquery';
+import navTemplate from './nav.hbs';
 
 function NavView(eventEmitter, root, navOption) {
     this.root = root;
@@ -95,4 +95,4 @@ NavView.prototype._init = function() {
     }.bind(this));
 };
 
-module.exports = NavView;
+export default NavView;
