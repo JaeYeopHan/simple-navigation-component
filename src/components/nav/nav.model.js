@@ -11,7 +11,7 @@ class NavModel {
     }
 
     getPages(index) {
-        const base = parseInt((index - 1) / this.IDX_COUNT);
+        const base = Math.floor((index - 1) / this.IDX_COUNT);
         const startIndex = base * this.IDX_COUNT;
         const endIndex = (base + 1) * this.IDX_COUNT;
         const pages = [];
@@ -40,7 +40,7 @@ class NavModel {
 
     getIndexInfo(count) {
         const pages = [];
-        let maxIndex = parseInt(count / this.TODO_COUNT);
+        let maxIndex = Math.floor(count / this.TODO_COUNT);
         if ((count % this.TODO_COUNT) !== 0) {
             maxIndex += 1;
         }

@@ -46,7 +46,7 @@ class NavView {
         this.ableCheck(this.PREV_BTN, this.curIdx === this.DEFAULT_INDEX);
         this.ableCheck(this.NEXT_BTN, this.curIdx === this._MAX);
         this.ableCheck(this.PREV_PAGE_BTN, this.curIdx <= this.IDX_COUNT);
-        const isAbleToNext = parseInt((this.curIdx - 1) / this.IDX_COUNT + 1) * this.IDX_COUNT;
+        const isAbleToNext = Math.floor((this.curIdx - 1) / this.IDX_COUNT + 1) * this.IDX_COUNT;
         this.ableCheck(this.NEXT_PAGE_BTN, (isAbleToNext > this._MAX));
     }
 
@@ -54,7 +54,7 @@ class NavView {
         const pagesNav = document.querySelectorAll(this.NAV);
         Array.from(pagesNav).forEach(target => {
             target.parentNode.classList.remove(this.ACTIVE);
-            if (parseInt(target.textContent) === this.curIdx) {
+            if (Math.floor(target.textContent) === this.curIdx) {
                 target.parentNode.classList.add(this.ACTIVE);
             }
         });
@@ -69,7 +69,7 @@ class NavView {
         this.root.addEventListener('click', e => {
             const target = e.target;
             if (target.matches(this.NAV)) {
-                this.onMove(e, () => parseInt(e.target.textContent));
+                this.onMove(e, () => Math.floor(e.target.textContent));
             } else if (target.matches(this.PREV_BTN)) {
                 this.onMove(e, () => this.curIdx - this.DEFAULT_INDEX)
             } else if (target.matches(this.NEXT_BTN)) {
