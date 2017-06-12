@@ -10,22 +10,21 @@ class NavView {
         this.IDX_COUNT = countOfIndex;
         this.TODO_COUNT = countOfItem;
 
+        this.NAV = '.page-nav';
+        this.PREV_BTN = '#prevBtn';
+        this.NEXT_BTN = '#nextBtn';
+        this.PREV_PAGE_BTN = '#prevPageBtn';
+        this.NEXT_PAGE_BTN = '#nextPageBtn';
+
+        this.DISABLED = 'disabled';
+        this.ACTIVE = 'active';
+
         this._init();
     }
 
-    onClickIndex(e) {
+    onMove(e, changeCurIdx) {
         e.preventDefault();
-        this.curIdx = parseInt(e.target.textContent);
-        this._eventEmitter.emit('buildNav', {
-            index: this.curIdx,
-            max: this.TODO_COUNT
-        });
-        this.controlNav();
-    }
-
-    onClickNavBtn(e, changeCurIdx) {
-        e.preventDefault();
-        if (e.target.parentNode.classList.contains('disabled')) {
+        if (e.target.parentNode.classList.contains(this.DISABLED)) {
             return;
         }
         this.curIdx = changeCurIdx();
@@ -36,52 +35,52 @@ class NavView {
         this.controlNav();
     }
 
-    renderNav({maxIndex, pages} = { num: 1, maxIndex: 1 }) {
+    renderNav({ maxIndex, pages } = { num: 1, maxIndex: 1 }) {
         this._MAX = maxIndex;
         this.root.innerHTML = navTemplate({ pages: pages });
         this.controlNav();
     }
 
     controlNav() {
-        this.navSelected();
-        this.ableCheck('#prevBtn', this.curIdx === this.DEFAULT_INDEX);
-        this.ableCheck('#nextBtn', this.curIdx === this._MAX);
-        this.ableCheck('#prevPageBtn', this.curIdx <= this.IDX_COUNT);
+        this.changeNavStatus();
+        this.ableCheck(this.PREV_BTN, this.curIdx === this.DEFAULT_INDEX);
+        this.ableCheck(this.NEXT_BTN, this.curIdx === this._MAX);
+        this.ableCheck(this.PREV_PAGE_BTN, this.curIdx <= this.IDX_COUNT);
         const isAbleToNext = parseInt((this.curIdx - 1) / this.IDX_COUNT + 1) * this.IDX_COUNT;
-        this.ableCheck('#nextPageBtn', (isAbleToNext > this._MAX));
+        this.ableCheck(this.NEXT_PAGE_BTN, (isAbleToNext > this._MAX));
     }
 
-    navSelected() {
-        const pagesNav = document.getElementsByClassName('page-nav');
+    changeNavStatus() {
+        const pagesNav = document.querySelectorAll(this.NAV);
         Array.from(pagesNav).forEach(target => {
-            target.parentNode.classList.remove('active');
+            target.parentNode.classList.remove(this.ACTIVE);
             if (parseInt(target.textContent) === this.curIdx) {
-                target.parentNode.classList.add('active');
+                target.parentNode.classList.add(this.ACTIVE);
             }
         });
     }
 
     ableCheck(target, condition) {
         const isAble = document.querySelector(target).parentNode.classList;
-        (condition) ? isAble.add('disabled') : isAble.remove('disabled');
+        (condition) ? isAble.add(this.DISABLED) : isAble.remove(this.DISABLED);
     }
 
     _init() {
         this.root.addEventListener('click', e => {
             const target = e.target;
-            if (target.matches('.page-nav')) {
-                this.onClickIndex(e);
-            } else if (target.matches('#prevBtn')) {
-                this.onClickNavBtn(e, () => this.curIdx - this.DEFAULT_INDEX);
-            } else if (target.matches('#nextBtn')) {
-                this.onClickNavBtn(e, () => this.curIdx + this.DEFAULT_INDEX);
-            } else if (target.matches('#prevPageBtn')) {
-                this.onClickNavBtn(e, () => {
+            if (target.matches(this.NAV)) {
+                this.onMove(e, () => parseInt(e.target.textContent));
+            } else if (target.matches(this.PREV_BTN)) {
+                this.onMove(e, () => this.curIdx - this.DEFAULT_INDEX)
+            } else if (target.matches(this.NEXT_BTN)) {
+                this.onMove(e, () => this.curIdx + this.DEFAULT_INDEX)
+            } else if (target.matches(this.PREV_PAGE_BTN)) {
+                this.onMove(e, () => {
                     const toPrevPage = (this.curIdx - 1) % this.IDX_COUNT + this.IDX_COUNT;
                     return this.curIdx - toPrevPage;
                 });
-            } else if (target.matches('#nextPageBtn')) {
-                this.onClickNavBtn(e, () => {
+            } else if (target.matches(this.NEXT_PAGE_BTN)) {
+                this.onMove(e, () => {
                     const toNextPage = this.IDX_COUNT - ((this.curIdx - 1) % this.IDX_COUNT);
                     return this.curIdx + toNextPage;
                 });
