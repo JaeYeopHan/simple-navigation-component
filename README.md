@@ -23,7 +23,8 @@ const nav = new NavComponent(api, '#nav', {
 
 #### **Notice!**
 If the `renderOption` passed to the two each components is different, an error occurs. You can check it in tool for developer of browser.
-```js default renderOption
+```js
+// default renderOption
 {
   countOfItem: 3,
   countOfIndex: 5
