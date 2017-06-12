@@ -5,7 +5,7 @@ Simply pass api and the id value of the html you want to specify as root, and th
 ## Usage
 ```js
 const list = new ListComponent(api, '#list');
-const nav = new NavComponent(api, 'nav');
+const nav = new NavComponent(api, '#nav');
 nav.on('buildNav', function(data) {
     list.render(data);
 });
