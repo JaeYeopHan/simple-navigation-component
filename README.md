@@ -20,8 +20,15 @@ const nav = new NavComponent(api, '#nav', {
     countOfIndex: 3
 });
 ```
+
 #### **Notice!**
 If the `renderOption` passed to the two each components is different, an error occurs. You can check it in tool for developer of browser.
+```js default renderOption
+{
+  countOfItem: 3,
+  countOfIndex: 5
+}
+```
 
 ## Description
 * jQuery (just for ajax)
@@ -42,4 +49,5 @@ If the `renderOption` passed to the two each components is different, an error o
 * Add karma
 * Add istanbul
 * Add Unit Test
+* Cross-browsing issue
 
