@@ -26,8 +26,8 @@ If the `renderOption` passed to the two each components is different, an error o
 ```js
 // default renderOption
 {
-  countOfItem: 3,
-  countOfIndex: 5
+  countOfItem: 3, // Number of items to render on one page
+  countOfIndex: 5 // Number of pagination about items
 }
 ```
 
