@@ -32,8 +32,8 @@ class NavModel {
     }
 
     init() {
-        return this._navService.getCountOfTodos().then(({ cnt }) => {
-            const renderOption = this.getIndexInfo(cnt);
+        return this._navService.getCountOfTodos().then(({ data }) => {
+            const renderOption = this.getIndexInfo(data.cnt);
             this.setRenderOption(renderOption);
         }).catch(err => console.error(err));
     }

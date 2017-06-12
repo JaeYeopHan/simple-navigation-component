@@ -1,4 +1,4 @@
-import $ from 'jquery';
+import axios from 'axios';
 
 class NavService {
     constructor(api) {
@@ -6,7 +6,7 @@ class NavService {
     }
 
     getCountOfTodos() {
-        return $.get(`${this.api}/count`);
+        return axios.get(`${this.api}/count`);
     }
 }
 
