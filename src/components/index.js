@@ -35,7 +35,7 @@ export default function Components() {
     //     countOfIndex: 3
     // });
 
-    const nav = new NavComponent(api, 'nav');
+    const nav = new NavComponent(api, '#nav');
     nav.on('buildNav', function(data) {
         list.render(data);
     });

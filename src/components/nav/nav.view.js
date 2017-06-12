@@ -2,7 +2,7 @@ import navTemplate from './nav.hbs';
 
 class NavView {
     constructor(eventEmitter, root, { countOfIndex, countOfItem }) {
-        this.root = document.getElementById(root);
+        this.root = document.querySelector(root);
         this._eventEmitter = eventEmitter;
 
         this.DEFAULT_INDEX = 1;
@@ -44,11 +44,11 @@ class NavView {
 
     controlNav() {
         this.navSelected();
-        this.ableCheck('prevBtn', this.curIdx === this.DEFAULT_INDEX);
-        this.ableCheck('nextBtn', this.curIdx === this._MAX);
-        this.ableCheck('prevPageBtn', this.curIdx <= this.IDX_COUNT);
+        this.ableCheck('#prevBtn', this.curIdx === this.DEFAULT_INDEX);
+        this.ableCheck('#nextBtn', this.curIdx === this._MAX);
+        this.ableCheck('#prevPageBtn', this.curIdx <= this.IDX_COUNT);
         const isAbleToNext = parseInt((this.curIdx - 1) / this.IDX_COUNT + 1) * this.IDX_COUNT;
-        this.ableCheck('nextPageBtn', (isAbleToNext > this._MAX));
+        this.ableCheck('#nextPageBtn', (isAbleToNext > this._MAX));
     }
 
     navSelected() {
@@ -62,7 +62,7 @@ class NavView {
     }
 
     ableCheck(target, condition) {
-        const isAble = document.getElementById(target).parentNode.classList;
+        const isAble = document.querySelector(target).parentNode.classList;
         (condition) ? isAble.add('disabled') : isAble.remove('disabled');
     }
 
