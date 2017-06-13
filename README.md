@@ -37,14 +37,15 @@ If the `renderOption` passed to the two each components is different, an error o
 ## Description
 * axios
 * handlebars
-* mocha/chai for test
-* Webpack (for bundle and minify)
+* mocha / chai / chai-http
+* Webpack2
   * handlebars-loader
   * babel-loader
 * event-emitter
+* travis
 * bootstrap
 
-### Futhermore
+### Project Status
 * html file uglify, minify
 * css and bootstrap uglify, minify
 * Add karma
