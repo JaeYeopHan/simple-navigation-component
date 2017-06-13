@@ -32,7 +32,7 @@ If the `renderOption` passed to the two each components is different, an error o
 ```
 
 ## Description
-* jQuery (just for ajax)
+* axios
 * handlebars
 * mocha/chai for test
 * Webpack (for bundle and minify)
@@ -42,8 +42,6 @@ If the `renderOption` passed to the two each components is different, an error o
 * bootstrap
 
 ### Futhermore
-* Remove jQuery
-  * Ajax => fetch API or axios
 * html file uglify, minify
 * css and bootstrap uglify, minify
 * Apply Travis CI
