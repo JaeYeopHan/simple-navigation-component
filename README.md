@@ -47,7 +47,6 @@ If the `renderOption` passed to the two each components is different, an error o
 ### Futhermore
 * html file uglify, minify
 * css and bootstrap uglify, minify
-* Apply Travis CI
 * Add karma
 * Add istanbul
 * Add Unit Test
