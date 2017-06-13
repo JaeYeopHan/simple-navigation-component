@@ -1,28 +1,28 @@
-var chai = require('chai');
-var chaiHttp = require('chai-http');
-var expect = chai.expect;
+import chai from 'chai';
+import chaiHttp from 'chai-http';
+const expect = chai.expect;
 chai.use(chaiHttp);
 
-describe('API test', function() {
-    var api = 'http://128.199.76.9:8002/jbee/todo';
-    it('fetch todo\'s count data', function(done) {
+describe('API test', () => {
+    const api = 'http://128.199.76.9:8002/jbee/todo';
+    it('fetch todo\'s count data', done => {
         chai
             .request(api)
             .get('/count')
-            .end(function(err, res) {
+            .end((err, res) => {
                 expect(err).to.be.null;
                 expect(res).to.have.status(200);
                 done();
             });
     });
 
-    it('fetch todo data', function(done) {
-        var index = 0;
-        var count = 3;
+    it('fetch todo data', done => {
+        const index = 0;
+        const count = 3;
         chai
             .request(api)
             .get('/page?start=' + index + '&limit=' + count)
-            .end(function(err, res) {
+            .end((err, res) => {
                 expect(err).to.be.null;
                 expect(res).to.have.status(200);
                 done();
