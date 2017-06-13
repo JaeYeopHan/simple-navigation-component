@@ -61,3 +61,6 @@ typings/
 .env
 
 /dist/
+
+# config file
+config.js

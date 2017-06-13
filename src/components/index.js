@@ -1,10 +1,10 @@
 import ListComponent from './list';
 import NavComponent from './nav';
+import config from '../../config';
 
 export default function Components() {
-    const api = 'http://128.199.76.9:8002/jbee/todo';
+    const api = config.api;
 
-    //
     // @param [required] api (fetch data url)
     // @param [required] selector
     // @param listOption
@@ -36,7 +36,7 @@ export default function Components() {
     // });
 
     const nav = new NavComponent(api, '#nav');
-    nav.on('buildNav', function(data) {
+    nav.on('buildNav', function (data) {
         list.render(data);
     });
 };

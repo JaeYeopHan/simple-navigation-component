@@ -2,9 +2,11 @@ import chai from 'chai';
 const expect = chai.expect;
 
 import NavService from '../src/components/nav/nav.service';
+import config from '../config';
 
 describe('NavService.js test', () => {
-    const api = 'http://128.199.76.9:8002/jbee/todo';
+    const api = config.api;
+
     const navService = new NavService(api);
     const count = 21;
 

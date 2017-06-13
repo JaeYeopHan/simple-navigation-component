@@ -3,8 +3,10 @@ import chaiHttp from 'chai-http';
 const expect = chai.expect;
 chai.use(chaiHttp);
 
+import config from '../config';
+
 describe('API test', () => {
-    const api = 'http://128.199.76.9:8002/jbee/todo';
+    const api = config.api;
     it('fetch todo\'s count data', done => {
         chai
             .request(api)
