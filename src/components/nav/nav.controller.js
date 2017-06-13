@@ -27,7 +27,7 @@ class NavController {
     }
 
     _attachEvent() {
-        this._eventEmitter.on('buildNav', data => this.render(data));
+        this.on('buildNav', data => this.render(data));
     }
 
     on(event, callback) {
