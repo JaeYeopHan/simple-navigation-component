@@ -3,4 +3,4 @@ node_js:
   - "6"
 install:
   - npm install
-script: babel server --out-dir build && webpack
+script: npm build
