@@ -45,11 +45,11 @@ If the `renderOption` passed to the two each components is different, an error o
 * travis
 * bootstrap
 
-### Project Status
+### TODO
 * html file uglify, minify
 * css and bootstrap uglify, minify
 * Add karma
 * Add istanbul
 * Add Unit Test
 * Cross-browsing issue
-
+* Add css hover 
