@@ -1,4 +1,4 @@
-# Component_development_practice
+# Navigation Component
 **This is Navigation component.**  
 Simply pass api and the id value of the html you want to specify as root, and the `renderOption` to complete the navigation.
 
