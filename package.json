@@ -4,8 +4,8 @@
   "description": "Component development practice repository",
   "main": "index.js",
   "scripts": {
-    "test": "mocha $(find ./ -name '*./test/**/*.test.js') --recursive -w",
-    "cover": "istanbul cover -x *.test.js mocha $(find ./ -name '*./test/**/*.test.js') --recursive",
+    "test": "mocha --require babel-register $(find ./ -name '*./test/**/*.test.js') --recursive",
+    "cover": "istanbul cover -x *.test.js npm test",
     "dev": "webpack-dev-server -d",
     "build": "webpack"
   },
@@ -22,6 +22,7 @@
     "babel-eslint": "^7.2.3",
     "babel-loader": "^7.0.0",
     "babel-preset-env": "^1.5.2",
+    "babel-register": "^6.24.1",
     "bootstrap": "^3.3.7",
     "chai": "^4.0.0",
     "chai-http": "^3.0.0",
