@@ -1,4 +1,7 @@
 # Navigation Component
+[![Build Status](https://travis-ci.org/JaeYeopHan/Navigation_Component.svg?branch=master)](https://travis-ci.org/JaeYeopHan/Navigation_Component)  
+
+
 **This is Navigation component.**  
 Simply pass api and the id value of the html you want to specify as root, and the `renderOption` to complete the navigation.
 
