@@ -41,6 +41,8 @@ If the `renderOption` passed to the two each components is different, an error o
   * eslint-loader(pre)
   * handlebars-loader
   * babel-loader
+* ESLint
+  * airbnb-base
 * event-emitter
 * travis
 * bootstrap
