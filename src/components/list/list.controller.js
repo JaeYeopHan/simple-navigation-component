@@ -26,7 +26,7 @@ ListController.prototype.render = function(renderOption) {
         console.error('NotMatch renderOption!');
     }
 
-    var todos = this._listModel.getTodos(renderOption.index);
+    const todos = this._listModel.getTodos(renderOption.index);
     if (todos === undefined) {
         this._listModel.fetchTodos(renderOption.index).then(function() {
             this._listView.renderList(this._listModel.getTodos(renderOption.index));
