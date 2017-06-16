@@ -39,4 +39,4 @@ export default function Components() {
     nav.on('buildNav', function (data) {
         list.render(data);
     });
-};
+}

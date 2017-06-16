@@ -37,7 +37,7 @@ class NavView {
 
     renderNav({ maxIndex, pages } = { num: 1, maxIndex: 1 }) {
         this._MAX = maxIndex;
-        this.root.innerHTML = navTemplate({ pages: pages });
+        this.root.innerHTML = navTemplate({ pages });
         this.controlNav();
     }
 
@@ -52,7 +52,7 @@ class NavView {
 
     changeNavStatus() {
         const pagesNav = document.querySelectorAll(this.NAV);
-        Array.from(pagesNav).forEach(target => {
+        Array.from(pagesNav).forEach((target) => {
             target.parentNode.classList.remove(this.ACTIVE);
             if (Math.floor(target.textContent) === this.curIdx) {
                 target.parentNode.classList.add(this.ACTIVE);
@@ -62,11 +62,11 @@ class NavView {
 
     ableCheck(target, condition) {
         const isAble = document.querySelector(target).parentNode.classList;
-        (condition) ? isAble.add(this.DISABLED) : isAble.remove(this.DISABLED);
+        condition ? isAble.add(this.DISABLED) : isAble.remove(this.DISABLED);
     }
 
     _init() {
-        this.root.addEventListener('click', e => {
+        this.root.addEventListener('click', (e) => {
             const target = e.target;
             if (target.matches(this.NAV)) {
                 this.onMove(e, () => Math.floor(e.target.textContent));

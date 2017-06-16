@@ -7,7 +7,7 @@ class ListView {
     }
 
     renderList(todos = { id: 1, todo: 'todos가 없습니다.' }) {
-        this.root.innerHTML = listTemplate({ todos: todos });
+        this.root.innerHTML = listTemplate({ todos });
     }
 }
 

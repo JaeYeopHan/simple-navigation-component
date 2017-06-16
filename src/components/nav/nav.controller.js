@@ -1,6 +1,6 @@
+import EventEmitter from 'event-emitter';
 import NavView from './nav.view';
 import NavModel from './nav.model';
-import EventEmitter from 'event-emitter';
 
 class NavController {
     constructor(api, root, navOption = { countOfItem: 3, countOfIndex: 5 }) {

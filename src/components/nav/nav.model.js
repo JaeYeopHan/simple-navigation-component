@@ -22,7 +22,7 @@ class NavModel {
         }
         return {
             pages,
-            maxIndex: this.maxIndex
+            maxIndex: this.maxIndex,
         };
     }
 

@@ -1,6 +1,6 @@
+import EventEmitter from 'event-emitter';
 import ListView from './list.view';
 import ListModel from './list.model';
-import EventEmitter from 'event-emitter';
 
 class ListController {
     constructor(api, root, listOption = { countOfItem: 3 }) {
