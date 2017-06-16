@@ -6,8 +6,7 @@ class ListView {
         this._eventEmitter = eventEmitter;
     }
 
-    renderList(todos) {
-        var todos = todos || { id: 1, todo: 'todos가 없습니다.' };
+    renderList(todos = { id: 1, todo: 'todos가 없습니다.' }) {
         this.root.innerHTML = listTemplate({ todos: todos });
     }
 }

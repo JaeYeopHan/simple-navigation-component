@@ -1,9 +1,9 @@
 import ListService from './list.service';
 
 class ListModel {
-    constructor(api, listOption) {
+    constructor(api, { countOfItem }) {
         this._listService = new ListService(api);
-        this.TODO_COUNT = listOption.countOfItem;
+        this.TODO_COUNT = countOfItem;
 
         this.todoModel = [];
     }
@@ -19,11 +19,9 @@ class ListModel {
     fetchTodos(index) {
         const startNum = (index - 1) * this.TODO_COUNT;
         return this._listService.getTodosOfPage(startNum, this.TODO_COUNT)
-            .then(function({ data }) {
+            .then(({ data }) => {
                 this.setTodos(index, data);
-            }.bind(this)).catch(function(err) {
-                console.error(err);
-            });
+            }).catch(err => console.error(err));
     }
 }
 

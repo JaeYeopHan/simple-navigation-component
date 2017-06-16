@@ -6,7 +6,7 @@ class ListService {
     }
 
     getTodosOfPage(num, count) {
-        return axios.get(this._api + '/page?start=' + num + '&limit=' + count);
+        return axios.get(`${this._api}/page?start=${num}&limit=${count}`);
     }
 }
 

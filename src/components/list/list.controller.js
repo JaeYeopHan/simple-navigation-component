@@ -3,10 +3,8 @@ import ListModel from './list.model';
 import EventEmitter from 'event-emitter';
 
 class ListController {
-    constructor(api, root, listOption) {
-        this.listOption = listOption || {
-                countOfItem: 3
-            };
+    constructor(api, root, listOption = { countOfItem: 3 }) {
+        this.listOption = listOption;
 
         this._eventEmitter = new EventEmitter();
         this._listModel = new ListModel(api, this.listOption);
@@ -17,23 +15,16 @@ class ListController {
         this._init();
     }
 
-    render(renderOption) {
-        var renderOption = renderOption || {
-                index: this.DEFAULT_INDEX,
-                max: this.listOption.countOfItem
-            };
-
-        if (this.listOption.countOfItem !== renderOption.max) {
+    render({ index, max } = { index: this.DEFAULT_INDEX, max: this.listOption.countOfItem }) {
+        if (this.listOption.countOfItem !== max) {
             console.error('NotMatch renderOption!');
         }
 
-        const todos = this._listModel.getTodos(renderOption.index);
+        const todos = this._listModel.getTodos(index);
         if (todos === undefined) {
-            this._listModel.fetchTodos(renderOption.index).then(function() {
-                this._listView.renderList(this._listModel.getTodos(renderOption.index));
-            }.bind(this)).catch(function(err) {
-                console.error(err);
-            });
+            this._listModel.fetchTodos(index).then(() => {
+                this._listView.renderList(this._listModel.getTodos(index));
+            }).catch(err => console.error(err));
         } else {
             this._listView.renderList(todos);
         }
