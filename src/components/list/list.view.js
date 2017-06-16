@@ -1,5 +1,5 @@
-var $ = require('jquery');
-var listTemplate = require('./list.hbs');
+import $ from 'jquery';
+import listTemplate from './list.hbs';
 
 function ListView(eventEmitter, root) {
     this.root = root;

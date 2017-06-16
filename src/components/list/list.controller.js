@@ -1,6 +1,6 @@
-var ListView = require('./list.view');
-var ListModel = require('./list.model');
-var EventEmitter = require('event-emitter');
+import ListView from './list.view';
+import ListModel from './list.model';
+import EventEmitter from 'event-emitter';
 
 function ListController(api, root, listOption) {
     this.listOption = listOption || {

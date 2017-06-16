@@ -1,4 +1,4 @@
-var ListService = require('./list.service');
+import ListService from './list.service';
 
 function ListModel(api, listOption) {
     this._listService = new ListService(api);

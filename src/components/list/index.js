@@ -1,1 +1,2 @@
-module.exports = require('./list.controller');
+import ListComponent from './list.controller';
+export default ListComponent;

@@ -1,4 +1,4 @@
-var $ = require('jquery');
+import $ from 'jquery';
 
 function ListService(api) {
     this._api = api;
