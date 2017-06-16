@@ -36,7 +36,5 @@ export default function Components() {
     // });
 
     const nav = new NavComponent(api, '#nav');
-    nav.on('buildNav', function (data) {
-        list.render(data);
-    });
+    nav.on('buildNav', data => list.render(data));
 }
