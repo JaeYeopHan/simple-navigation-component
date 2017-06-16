@@ -18,8 +18,8 @@ ListModel.prototype.setTodos = function(index, todos) {
 ListModel.prototype.fetchTodos = function(index) {
     const startNum = (index - 1) * this.TODO_COUNT;
     return this._listService.getTodosOfPage(startNum, this.TODO_COUNT)
-        .then(function(todos) {
-            this.setTodos(index, todos);
+        .then(function({ data }) {
+            this.setTodos(index, data);
         }.bind(this)).catch(function(err) {
             console.error(err);
         });
