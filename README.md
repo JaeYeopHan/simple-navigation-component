@@ -9,9 +9,8 @@ Simply pass api and the id value of the html you want to specify as root, and th
 ```js
 const list = new ListComponent(api, '#list');
 const nav = new NavComponent(api, '#nav');
-nav.on('buildNav', function(data) {
-    list.render(data);
-});
+nav.on('buildNav', data => list.render(data));
+
 ```
 Also,
 ```js
@@ -39,6 +38,7 @@ If the `renderOption` passed to the two each components is different, an error o
 * handlebars
 * mocha / chai / chai-http
 * Webpack2
+  * eslint-loader(pre)
   * handlebars-loader
   * babel-loader
 * event-emitter
@@ -46,10 +46,11 @@ If the `renderOption` passed to the two each components is different, an error o
 * bootstrap
 
 ### TODO
+* Add Unit Test
+* Remove bootstrap to use original css 
 * html file uglify, minify
-* css and bootstrap uglify, minify
+* css uglify, minify(textExtract)
+* tree shaking (webpack)
 * Add karma
 * Add istanbul
-* Add Unit Test
 * Cross-browsing issue
-* Add css hover 
