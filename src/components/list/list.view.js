@@ -1,13 +1,15 @@
 import listTemplate from './list.hbs';
 
-function ListView(eventEmitter, root) {
-    this.root = document.querySelector(root);
-    this._eventEmitter = eventEmitter;
+class ListView {
+    constructor(eventEmitter, root) {
+        this.root = document.querySelector(root);
+        this._eventEmitter = eventEmitter;
+    }
+
+    renderList(todos) {
+        var todos = todos || { id: 1, todo: 'todos가 없습니다.' };
+        this.root.innerHTML = listTemplate({ todos: todos });
+    }
 }
 
-ListView.prototype.renderList = function(todos) {
-    var todos = todos || { id: 1, todo: 'todos가 없습니다.' };
-    this.root.innerHTML = listTemplate({ todos: todos });
-};
-
-module.exports = ListView;
+export default ListView;

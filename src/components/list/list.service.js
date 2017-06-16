@@ -1,11 +1,13 @@
 import axios from 'axios';
 
-function ListService(api) {
-    this._api = api;
+class ListService {
+    constructor(api) {
+        this._api = api;
+    }
+
+    getTodosOfPage(num, count) {
+        return axios.get(this._api + '/page?start=' + num + '&limit=' + count);
+    }
 }
 
-ListService.prototype.getTodosOfPage = function(num, count) {
-    return axios.get(this._api + '/page?start=' + num + '&limit=' + count);
-};
-
-module.exports = ListService;
+export default ListService;
