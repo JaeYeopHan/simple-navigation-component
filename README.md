@@ -44,7 +44,7 @@ If the `renderOption` passed to the two each components is different, an error o
 * ESLint
   * airbnb-base
 * event-emitter
-* travis
+* Travis CI
 * bootstrap
 
 ### TODO
