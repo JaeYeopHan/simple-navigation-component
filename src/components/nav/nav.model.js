@@ -16,7 +16,7 @@ class NavModel {
         const endIndex = (base + 1) * this.IDX_COUNT;
         const pages = [];
         for (let i = startIndex; i < endIndex; i++) {
-            if (this.pages[i] !== undefined) {
+            if (this.pages[i]) {
                 pages.push(this.pages[i]);
             }
         }
@@ -26,15 +26,11 @@ class NavModel {
         };
     }
 
-    setRenderOption({ pages, maxIndex }) {
-        this.pages = pages;
-        this.maxIndex = maxIndex;
-    }
-
     init() {
         return this._navService.getCountOfTodos().then(({ data }) => {
-            const renderOption = this.getIndexInfo(data.cnt);
-            this.setRenderOption(renderOption);
+            const { pages, maxIndex } = this.getIndexInfo(data.cnt);
+            this.pages = pages;
+            this.maxIndex = maxIndex;
         }).catch(err => console.error(err));
     }
 
