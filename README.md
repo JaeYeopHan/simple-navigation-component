@@ -56,3 +56,4 @@ If the `renderOption` passed to the two each components is different, an error o
 * Add karma
 * Add istanbul
 * Cross-browsing issue
+* Remodeling api design
