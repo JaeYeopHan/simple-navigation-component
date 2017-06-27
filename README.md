@@ -57,3 +57,4 @@ If the `renderOption` passed to the two each components is different, an error o
 * Add istanbul
 * Cross-browsing issue
 * Remodeling api design
+* Extract TODO component (by DI)
