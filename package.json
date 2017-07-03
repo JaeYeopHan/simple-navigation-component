@@ -1,7 +1,7 @@
 {
-  "name": "component_development",
+  "name": "Navigation component with bootstrap",
   "version": "1.0.0",
-  "description": "Component development practice repository",
+  "description": "It is a component added with the functions that navigation should have and designed with bootstrap.",
   "main": "index.js",
   "scripts": {
     "test": "mocha --require babel-register $(find ./ -name '*./test/**/*.test.js') --recursive",
