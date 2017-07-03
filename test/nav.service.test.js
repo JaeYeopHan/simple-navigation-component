@@ -1,7 +1,7 @@
 import chai from 'chai';
 const expect = chai.expect;
 
-import NavService from '../src/components/nav/nav.service';
+import NavService from '../lib/nav/nav.service';
 import config from '../config';
 
 describe('NavService.js test', () => {

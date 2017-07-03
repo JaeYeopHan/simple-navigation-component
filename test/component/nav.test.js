@@ -2,7 +2,7 @@ import { expect } from 'chai';
 
 import handlebars from 'handlebars';
 import config from '../../config';
-import Nav from '../../src/components/nav';
+import Nav from '../../lib/nav';
 
 describe('Navigation Component test', () => {
     const root = '#nav';
