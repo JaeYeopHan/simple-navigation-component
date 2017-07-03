@@ -5,8 +5,8 @@
 Simply pass api and the id value of the html you want to specify as root, and the `renderOption` to complete the navigation.
 
 ## Demo
+`X`: Clickable / `O`:  Not clickable
 #### Case 1
-
 | 이전 | << | >> | 다음 |
 |:-:|:-:|:-:|:-:|
 | X | X | O | O |
@@ -34,25 +34,25 @@ Simply pass api and the id value of the html you want to specify as root, and th
 
 ![](/DEMO_IMAGE/demo_4.png)
 
+</br>
+
 ## Usage
 ```js
-const list = new ListComponent(api, '#list');
 const nav = new NavComponent(api, '#nav');
-nav.on('buildNav', data => list.render(data));
+nav.on('buildNav', data => {
+    //TODO attach event
+});
 
 ```
 Also,
 ```js
-const list = new ListComponent(api, '#list', {
-    countOfItem: 5
-});
 const nav = new NavComponent(api, '#nav', {
     countOfItem: 5,
     countOfIndex: 3
 });
 ```
 
-#### **Notice!**
+### **Notice!**
 If the `renderOption` passed to the two each components is different, an error occurs. You can check it in tool for developer of browser.
 ```js
 // default renderOption
@@ -66,7 +66,19 @@ If the `renderOption` passed to the two each components is different, an error o
 * To fetch value to count of data
   * `[Domain Address]/count`
 
-## Description
+</br>
+
+## Install
+```
+> git clone https://github.com/JaeYeopHan/Navigation_Component nav
+> cd nav
+> yarn add //or npm install
+> npm run dev
+```
+
+</br>
+
+## Dependency
 * axios
 * handlebars
 * mocha / chai / chai-http
@@ -80,7 +92,9 @@ If the `renderOption` passed to the two each components is different, an error o
 * Travis CI
 * bootstrap
 
-### TODO
+</br>
+
+## TODO
 * Add Unit Test
 * Remove bootstrap to use original css 
 * html file uglify, minify
@@ -89,5 +103,4 @@ If the `renderOption` passed to the two each components is different, an error o
 * Add karma
 * Add istanbul
 * Cross-browsing issue
-* Remodeling api design
 * Extract TODO component (by DI)
