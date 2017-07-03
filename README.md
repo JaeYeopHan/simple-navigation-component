@@ -1,9 +1,38 @@
 # Navigation Component
 [![Build Status](https://travis-ci.org/JaeYeopHan/Navigation_Component.svg?branch=master)](https://travis-ci.org/JaeYeopHan/Navigation_Component)  
 
-
 **This is Navigation component.**  
 Simply pass api and the id value of the html you want to specify as root, and the `renderOption` to complete the navigation.
+
+## Demo
+#### Case 1
+
+| 이전 | << | >> | 다음 |
+|:-:|:-:|:-:|:-:|
+| X | X | O | O |
+
+![](/DEMO_IMAGE/demo_1.png)
+
+#### Case 2
+| 이전 | << | >> | 다음 |
+|:-:|:-:|:-:|:-:|
+| X | O | O | O |
+
+![](/DEMO_IMAGE/demo_2.png)
+
+#### Case 3
+| 이전 | << | >> | 다음 |
+|:-:|:-:|:-:|:-:|
+| O | O | O | X |
+
+![](/DEMO_IMAGE/demo_3.png)
+
+#### Case 4
+| 이전 | << | >> | 다음 |
+|:-:|:-:|:-:|:-:|
+| O | O | X | X |
+
+![](/DEMO_IMAGE/demo_4.png)
 
 ## Usage
 ```js
@@ -32,6 +61,10 @@ If the `renderOption` passed to the two each components is different, an error o
   countOfIndex: 5 // Number of pagination about items
 }
 ```
+
+### API Design in component
+* To fetch value to count of data
+  * `[Domain Address]/count`
 
 ## Description
 * axios
