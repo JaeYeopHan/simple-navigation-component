@@ -5,6 +5,7 @@
 Simply pass api and the id value of the html you want to specify as root, and the `renderOption` to complete the navigation.
 
 ## Demo
+You can see the demo with list component in [demo-branch](https://github.com/JaeYeopHan/Navigation_Component/tree/demo-branch)  
 `X`: Clickable / `O`:  Not clickable
 #### Case 1
 | 이전 | << | >> | 다음 |
@@ -95,12 +96,10 @@ If the `renderOption` passed to the two each components is different, an error o
 </br>
 
 ## TODO
-* Add Unit Test
-* Remove bootstrap to use original css 
-* html file uglify, minify
-* css uglify, minify(textExtract)
-* tree shaking (webpack)
-* Add karma
-* Add istanbul
-* Cross-browsing issue
-* Extract TODO component (by DI)
+* [ ] Add Unit Test 
+* [ ] html file uglify, minify
+* [ ] css uglify, minify(with textExtract)
+* [ ] tree shaking (webpack)
+* [ ] Add karma
+* [ ] Add istanbul
+* [ ] Add Cross-browsing status
