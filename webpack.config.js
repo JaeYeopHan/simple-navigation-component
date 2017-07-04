@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
-    entry: ['./src/index.js'],
+    entry: ['./lib/nav/index.js'],
 
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -29,7 +29,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                include: path.join(__dirname, 'src'),
+                include: path.join(__dirname, 'lib'),
                 use: [{
                     loader: 'babel-loader',
                 }]
