@@ -1,12 +1,18 @@
-# Navigation Component
-[![Build Status](https://travis-ci.org/JaeYeopHan/Navigation_Component.svg?branch=master)](https://travis-ci.org/JaeYeopHan/Navigation_Component)  
+# navigation-component
+[![Build Status](https://travis-ci.org/JaeYeopHan/Navigation_Component.svg?branch=master)](https://travis-ci.org/JaeYeopHan/Navigation_Component)  [![npm version](https://badge.fury.io/js/navigation-component.svg)](https://badge.fury.io/js/navigation-component)
 
 **This is Navigation component.**  
 Simply pass api and the id value of the html you want to specify as root, and the `renderOption` to complete the navigation.
 
-## Demo
+## Feature
 You can see the demo with list component in [demo-branch](https://github.com/JaeYeopHan/Navigation_Component/tree/demo-branch)  
+
+### 1. Caching fetched data
+Assuming that the data fetched from the api does not change, once fetched from the api, the data corresponding to that index is cached.
+
+### 2. Activate buttons according to the situation
 `X`: Clickable / `O`:  Not clickable
+
 #### Case 1
 | 이전 | << | >> | 다음 |
 |:-:|:-:|:-:|:-:|
@@ -95,12 +101,25 @@ If the `renderOption` passed to the two each components is different, an error o
 
 </br>
 
-## TODO
-* [ ] Redesign cache algorithm with TTL 
-* [ ] Add Unit Test 
-* [ ] html file uglify, minify
-* [ ] css uglify, minify(with textExtract)
-* [ ] tree shaking (webpack)
-* [ ] Add karma
-* [ ] Add istanbul
-* [ ] Add Cross-browsing status
+## LICENSE
+MIT License
+
+Copyright (c) 2017 Jbee
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
