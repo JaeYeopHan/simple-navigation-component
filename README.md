@@ -96,6 +96,7 @@ If the `renderOption` passed to the two each components is different, an error o
 </br>
 
 ## TODO
+* [ ] Redesign cache algorithm with TTL 
 * [ ] Add Unit Test 
 * [ ] html file uglify, minify
 * [ ] css uglify, minify(with textExtract)
