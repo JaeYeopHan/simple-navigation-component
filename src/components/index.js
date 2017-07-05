@@ -1,5 +1,6 @@
+import NavComponent from 'navigation-component';
 import ListComponent from './list';
-import NavComponent from './nav';
+// import NavComponent from './nav';
 import config from '../../config';
 
 export default function Components() {
