@@ -4,3 +4,9 @@
 DEMO_IMAGE/
 test/
 node_modules
+webpack.config.js
+.travis.yml
+.editorconfig
+.eslintrc.js
+yarn.lock
+.babelrc
