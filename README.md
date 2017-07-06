@@ -1,8 +1,15 @@
-# navigation-component
+# simple-navigation-component
 [![Build Status](https://travis-ci.org/JaeYeopHan/Navigation_Component.svg?branch=master)](https://travis-ci.org/JaeYeopHan/Navigation_Component)  [![npm version](https://badge.fury.io/js/navigation-component.svg)](https://badge.fury.io/js/navigation-component)
 
-**This is Navigation component.**  
+**This is a navigation component created with vanilla js (ES6).**  
 Simply pass api and the id value of the html you want to specify as root, and the `renderOption` to complete the navigation.
+
+## Install
+```
+$ npm install simple-navigation-component --save-dev
+#or
+$ yarn add -D simple-navigation-component
+```
 
 ## Feature
 You can see the demo with list component in [demo-branch](https://github.com/JaeYeopHan/Navigation_Component/tree/demo-branch)  
@@ -10,7 +17,10 @@ You can see the demo with list component in [demo-branch](https://github.com/Jae
 ### 1. Caching fetched data
 Assuming that the data fetched from the api does not change, once fetched from the api, the data corresponding to that index is cached.
 
-### 2. Activate buttons according to the situation
+### 2. Prev button and Next button
+These two buttons change the index to the first index of the next or previous page. For example, if `countOfIndex` is 5, if index is between 1 and 5, clicking on the next button will move to the first index of 6 on the next page. (Similarly, if the index is between 6 and 10, click the prev button to move to index of 1.)
+
+### 3. Activate buttons according to the situation
 `X`: Clickable / `O`:  Not clickable
 
 #### Case 1
@@ -18,28 +28,28 @@ Assuming that the data fetched from the api does not change, once fetched from t
 |:-:|:-:|:-:|:-:|
 | X | X | O | O |
 
-![](/DEMO_IMAGE/demo_1.png)
+![](/docs/DEMO_IMAGE/demo_1.png)
 
 #### Case 2
 | 이전 | << | >> | 다음 |
 |:-:|:-:|:-:|:-:|
 | X | O | O | O |
 
-![](/DEMO_IMAGE/demo_2.png)
+![](/docs/DEMO_IMAGE/demo_2.png)
 
 #### Case 3
 | 이전 | << | >> | 다음 |
 |:-:|:-:|:-:|:-:|
 | O | O | O | X |
 
-![](/DEMO_IMAGE/demo_3.png)
+![](/docs/DEMO_IMAGE/demo_3.png)
 
 #### Case 4
 | 이전 | << | >> | 다음 |
 |:-:|:-:|:-:|:-:|
 | O | O | X | X |
 
-![](/DEMO_IMAGE/demo_4.png)
+![](/docs/DEMO_IMAGE/demo_4.png)
 
 </br>
 
@@ -49,7 +59,6 @@ const nav = new NavComponent(api, '#nav');
 nav.on('buildNav', data => {
     //TODO attach event
 });
-
 ```
 Also,
 ```js
@@ -57,7 +66,11 @@ const nav = new NavComponent(api, '#nav', {
     countOfItem: 5,
     countOfIndex: 3
 });
+nav.on('buildNav', data => {
+    //TODO attach event
+});
 ```
+Event `buildNav` occurs when the navigation index changes by click.
 
 ### **Notice!**
 If the `renderOption` passed to the two each components is different, an error occurs. You can check it in tool for developer of browser.
@@ -75,15 +88,37 @@ If the `renderOption` passed to the two each components is different, an error o
 
 </br>
 
-## Install
+## Development
 ```
-> git clone https://github.com/JaeYeopHan/Navigation_Component nav
-> cd nav
-> yarn add //or npm install
-> npm run dev
+# Clone repository and move folder
+$ git clone https://github.com/JaeYeopHan/Navigation_Component nav
+$ cd nav
+
+# Install dependencies
+$ yarn
+# or
+$ npm install
+
+# Build
+$ npm run dev
+
+# Test
+$ npm test
 ```
 
 </br>
+
+## Supported Browsers
+The following table shows browsers supported in this component
+
+|IE|Chrome|Firefox|Safari|
+|:-:|:-:|:-:|:-:|:-:|:-:|
+|11+|Latest|Latest|Latest|
+
+</br>
+
+## Bug Report
+If you find a bug, please report it to me using the [Issues](https://github.com/JaeYeopHan/simple-navigation-component/issues) page on Github
 
 ## Dependency
 * axios
