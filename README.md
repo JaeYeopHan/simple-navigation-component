@@ -1,12 +1,14 @@
 # simple-navigation-component
-[![Build Status](https://travis-ci.org/JaeYeopHan/Navigation_Component.svg?branch=master)](https://travis-ci.org/JaeYeopHan/Navigation_Component)  [![npm version](https://badge.fury.io/js/navigation-component.svg)](https://badge.fury.io/js/navigation-component)
+[![Build Status](https://travis-ci.org/JaeYeopHan/Navigation_Component.svg?branch=master)](https://travis-ci.org/JaeYeopHan/Navigation_Component)  [![npm version](https://badge.fury.io/js/simple-navigation-component.svg)](https://badge.fury.io/js/simple-navigation-component) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+                                                                                                                                                                                                                                                                                    
+
 
 **This is a navigation component created with vanilla js (ES6).**  
 Simply pass api and the id value of the html you want to specify as root, and the `renderOption` to complete the navigation.
 
 ## Install
-```
-$ npm install simple-navigation-component --save-dev
+```bash
+$ npm install --save-dev simple-navigation-component
 # or
 $ yarn add -D simple-navigation-component
 ```
@@ -20,8 +22,8 @@ Assuming that the data fetched from the api does not change, once fetched from t
 ### 2. Prev button and Next button
 These two buttons change the index to the first index of the next or previous page. For example, if `countOfIndex` is 5, if index is between 1 and 5, clicking on the next button will move to the first index of 6 on the next page. (Similarly, if the index is between 6 and 10, click the prev button to move to index of 1.)
 
-### 3. Activate buttons according to the situation
-`X`: Clickable / `O`:  Not clickable
+### 3. Activate buttons according to the case
+`X`: Not clickable  |  `O`:  Clickable
 
 #### Case 1
 | 이전 | << | >> | 다음 |
@@ -54,33 +56,64 @@ These two buttons change the index to the first index of the next or previous pa
 </br>
 
 ## Usage
+#### Import
 ```js
+import NavComoponent from 'simple-navigation-component';
+// or
+var NavComponent = require('simple-navigation-component');
+```
+
+#### Create
+```js
+/**
+ * 
+ * @type { NavComponent }
+ * @param api [required] (fetch data url)
+ * @param root [required] (selector)
+ * 
+**/
 const nav = new NavComponent(api, '#nav');
+```
+
+#### Attatch event
+```js
+/**
+ * 
+ * @method on
+ * @event buildNav
+ *        This event occurs when the navigation index changes by click.
+ * 
+**/
 nav.on('buildNav', data => {
-    //TODO attach event
+    //TODO Insert your code!
 });
 ```
-Also,
+
+**Also,** depending on the situation, you can customize the rendered appearance through `renderOption`.
+
 ```js
+import NavComoponent from 'simple-navigation-component';
+
 const nav = new NavComponent(api, '#nav', {
     countOfItem: 5,
     countOfIndex: 3
 });
+
 nav.on('buildNav', data => {
-    //TODO attach event
+    //TODO Insert your code!
 });
 ```
-Event `buildNav` occurs when the navigation index changes by click.
 
-### **Notice!**
-If the `renderOption` passed to the two each components is different, an error occurs. You can check it in tool for developer of browser.
+#### Default renderOption
 ```js
-// default renderOption
 {
   countOfItem: 3, // Number of items to render on one page
   countOfIndex: 5 // Number of pagination about items
 }
 ```
+> **Notice!**  
+If the `renderOption` passed to the two each components is different, an **error** occurs. You can check it in tool for developer of browser.
+
 
 ### API Design in component
 * To fetch value to count of data
@@ -91,7 +124,7 @@ If the `renderOption` passed to the two each components is different, an error o
 </br>
 
 ## Development
-```
+```bash
 # Clone repository and move folder
 $ git clone https://github.com/JaeYeopHan/simple-navigation-component
 $ cd simple-navigation-component
@@ -111,10 +144,10 @@ $ npm test
 </br>
 
 ## Supported Browsers
-The following table shows browsers supported in this component
+The following table shows browsers supported in this component.
 
 |IE|Chrome|Firefox|Safari|
-|:-:|:-:|:-:|:-:|:-:|:-:|
+|:-:|:-:|:-:|:-:|
 |11+|Latest|Latest|Latest|
 
 </br>
@@ -128,7 +161,7 @@ The following table shows browsers supported in this component
 </br>
 
 ## Bug Report
-If you find a bug, please report it to me using the [Issues](https://github.com/JaeYeopHan/simple-navigation-component/issues) page on Github
+If you find a bug, please report it to me using the [Issues](https://github.com/JaeYeopHan/simple-navigation-component/issues) page on Github.
 
 </br>
 
