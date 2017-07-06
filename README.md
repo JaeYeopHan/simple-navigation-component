@@ -7,7 +7,7 @@ Simply pass api and the id value of the html you want to specify as root, and th
 ## Install
 ```
 $ npm install simple-navigation-component --save-dev
-#or
+# or
 $ yarn add -D simple-navigation-component
 ```
 
@@ -84,15 +84,17 @@ If the `renderOption` passed to the two each components is different, an error o
 
 ### API Design in component
 * To fetch value to count of data
-  * `[Domain Address]/count`
+```
+[Domain Address]/count
+```
 
 </br>
 
 ## Development
 ```
 # Clone repository and move folder
-$ git clone https://github.com/JaeYeopHan/Navigation_Component nav
-$ cd nav
+$ git clone https://github.com/JaeYeopHan/simple-navigation-component
+$ cd simple-navigation-component
 
 # Install dependencies
 $ yarn
@@ -117,28 +119,22 @@ The following table shows browsers supported in this component
 
 </br>
 
-## Bug Report
-If you find a bug, please report it to me using the [Issues](https://github.com/JaeYeopHan/simple-navigation-component/issues) page on Github
-
 ## Dependency
 * axios
 * handlebars
-* mocha / chai / chai-http
-* Webpack2
-  * eslint-loader(pre)
-  * handlebars-loader
-  * babel-loader
-* ESLint
-  * airbnb-base
 * event-emitter
-* Travis CI
 * bootstrap
 
 </br>
 
-## LICENSE
-MIT License
+## Bug Report
+If you find a bug, please report it to me using the [Issues](https://github.com/JaeYeopHan/simple-navigation-component/issues) page on Github
 
+</br>
+
+## LICENSE
+simple-navigation-component is released under the [MIT License](https://github.com/JaeYeopHan/simple-navigation-component/blob/master/LICENSE).
+```
 Copyright (c) 2017 Jbee
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -158,3 +154,4 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+```
