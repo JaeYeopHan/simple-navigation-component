@@ -1,6 +1,6 @@
 {
-  "name": "navigation-component",
-  "version": "1.0.2",
+  "name": "simple-navigation-component",
+  "version": "1.0.3",
   "description": "It is a component added with the functions that navigation should have and designed with bootstrap.",
   "main": "index.js",
   "scripts": {
