@@ -1,12 +1,14 @@
 .DS_Store
 .git*
 .idea
-DEMO_IMAGE/
+docs/*
 test/
 node_modules
 webpack.config.js
-.travis.yml
+*.yml
 .editorconfig
 .eslintrc.js
 yarn.lock
 .babelrc
+.github
+!dist
