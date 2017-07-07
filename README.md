@@ -1,5 +1,5 @@
 # simple-navigation-component
-[![Build Status](https://travis-ci.org/JaeYeopHan/Navigation_Component.svg?branch=master)](https://travis-ci.org/JaeYeopHan/Navigation_Component)  [![npm version](https://badge.fury.io/js/simple-navigation-component.svg)](https://badge.fury.io/js/simple-navigation-component) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Build Status](https://travis-ci.org/JaeYeopHan/simple-navigation-component.svg?branch=master)](https://travis-ci.org/JaeYeopHan/simple-navigation-component)  [![npm version](https://badge.fury.io/js/simple-navigation-component.svg)](https://badge.fury.io/js/simple-navigation-component) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
                                                                                                                                                                                                                                                                                     
 
 
