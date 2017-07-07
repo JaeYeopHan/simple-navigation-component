@@ -1,7 +1,6 @@
 import { expect } from 'chai';
 
 import handlebars from 'handlebars';
-import config from '../../config';
 import Nav from '../../lib/nav';
 
 describe('Navigation Component test', () => {
@@ -9,7 +8,7 @@ describe('Navigation Component test', () => {
 
     let promise = new Promise((resolve, reject) => {
         setTimeout(() => {
-            new Nav(config.api, root);
+            new Nav('', root);
             resolve();
         });
     });
