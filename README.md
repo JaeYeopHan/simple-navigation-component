@@ -17,7 +17,7 @@ $ yarn add -D simple-navigation-component
 You can see the demo with list component in [demo-branch](https://github.com/JaeYeopHan/Navigation_Component/tree/demo-branch)  
 
 ### 1. Caching fetched data
-Assuming that the data fetched from the api does not change, once fetched from the api, the data corresponding to that index is cached.
+Assuming that the data fetched from the api does not change, once fetched from the api, the data that count of item is cached.
 
 ### 2. Prev button and Next button
 These two buttons change the index to the first index of the next or previous page. For example, if `countOfIndex` is 5, if index is between 1 and 5, clicking on the next button will move to the first index of 6 on the next page. (Similarly, if the index is between 6 and 10, click the prev button to move to index of 1.)
@@ -52,6 +52,11 @@ These two buttons change the index to the first index of the next or previous pa
 | O | O | X | X |
 
 ![](/docs/DEMO_IMAGE/demo_4.png)
+
+</br>
+
+### Style
+Currently, bootstrap framework is applied to the style. 
 
 </br>
 
